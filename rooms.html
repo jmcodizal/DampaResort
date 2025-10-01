@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAMPA</title>
+  <link rel="stylesheet" href="rooms.css">
+</head>
+<body>
+  
+  <!-- Header -->
+  <header class="header">
+    <img src="images/Dampa Logo.png" width="100">
+    <div class="date-picker">
+      <label>Check-in Date</label>
+      <input type="date" id="checkin">
+      <label>Check-out Date</label>
+      <input type="date" id="checkout">
+    </div>
+  </header>
+
+  <main class="container">
+  
+    <!-- Rooms Section -->
+    <div class="rooms-section">
+      
+      <section class="room-card">
+        <img src="images/r1.jpg" alt="Room 1 - AC Room">
+        <div class="room-details">
+          <div class="info-right">
+            <h2>Room 1</h2>
+            <div class="price-left">
+              <p class="price">₱7,000.00 <small>per Night</small></p>
+            </div>
+            <p>Capacity: <span>15 pax</span></p>
+            <a href="javascript:void(0)" class="details-link" onclick="showDetails('room1')">Room details ></a>
+            <button class="add-btn" onclick="addRoom('Room 1 (AC)', 7000)">Add Room 1</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="room-card">
+        <img src="images/r2.jpg" alt="Room 2 - AC Room">
+        <div class="room-details">
+          <div class="info-right">
+            <h2>Room 2</h2>
+            <div class="price-left">
+              <p class="price">₱7,000.00 <small>per Night</small></p>
+            </div>
+            <p>Capacity: <span>15 pax</span></p>
+            <a href="javascript:void(0)" class="details-link" onclick="showDetails('room2')">Room details ></a>
+            <button class="add-btn" onclick="addRoom('Room 2 (AC)', 7000)">Add Room 2</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="room-card">
+        <img src="images/r3.jpg" alt="Room 3 - AC Room">
+        <div class="room-details">
+          <div class="info-right">
+            <h2>Room 3</h2>
+            <div class="price-left">
+              <p class="price">₱7,000.00 <small>per Night</small></p>
+            </div>
+            <p>Capacity: <span>15 pax</span></p>
+            <a href="javascript:void(0)" class="details-link" onclick="showDetails('room3')">Room details ></a>
+            <button class="add-btn" onclick="addRoom('Room 3 (AC)', 7000)">Add Room 3</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="room-card">
+        <img src="images/img1.jpg" alt="Room 4 - Couple Room">
+        <div class="room-details">
+          <div class="info-right">
+            <h2>Couple Room</h2>
+            <div class="price-left">
+              <p class="price">₱2,500.00 <small>per Night</small></p>
+            </div>
+            <p>Capacity: <span>2–7 pax</span></p>
+            <a href="javascript:void(0)" class="details-link" onclick="showDetails('room4')">Room details ></a>
+            <button class="add-btn" onclick="addRoom('Couple Room', 2500)">Add Room 4</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="room-card">
+        <img src="images/img2.jpg" alt="Big Room 5">
+        <div class="room-details">
+          <div class="info-right">
+            <h2>Big Room</h2>
+            <div class="price-left">
+              <p class="price">₱7,000.00 <small>per Night</small></p>
+            </div>
+            <p>Capacity: <span>20 pax</span></p>
+            <a href="javascript:void(0)" class="details-link" onclick="showDetails('room5')">Room details ></a>
+            <button class="add-btn" onclick="addRoom('Big Room', 7000)">Add Room 5</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Booking Summary -->
+    <aside class="summary">
+      <div class="summary-header">
+        <h3>Booking Summary</h3>
+      </div>
+
+      <div class="summary-section">
+        <p><strong>Dates</strong><br><span id="dates">-</span></p>
+        <p><strong>No. of Nights</strong><br><span id="nights">-</span></p>
+      </div>
+
+      <div class="summary-section">
+        <h4>Selected Rooms</h4>
+        <ul id="room-list"></ul>
+      </div>
+
+      <div class="summary-total">
+        <p><strong>Total</strong></p>
+        <p>₱<span id="total">0</span>.00</p>
+      </div>
+
+      <button class="book-btn">BOOK NOW</button>
+    </aside>
+
+  </main>
+
+  <!-- Room Details Modal (only once, at bottom) -->
+  <div id="roomModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="room.js"></script>
+</body>
+</html>

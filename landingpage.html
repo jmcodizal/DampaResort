@@ -1,0 +1,292 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dampa Resort</title>
+  <link rel="stylesheet" href="landingpage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="topnav">
+    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+      <i class="fa fa-bars"></i>
+    </a>
+
+    <a href="#" class="logo">
+      <img src="images/Dampa Logo.png" alt="Dampa Resort" />
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+    <a href="landingpage.html">Home</a>
+
+    <div class="dropdown">
+      <a href="#">Rooms</a>
+      <div class="dropdown-content">
+        <a href="#">Room 1</a>
+        <a href="#">Room 2</a>
+        <a href="#">Room 3</a>
+        <a href="#">Couple Room</a>
+        <a href="#">Big Room</a>
+      </div>
+    </div>
+      <div class="dropdown">
+        <a href="#">Ammenities</a>
+        <div class="dropdown-content">
+          <a href="#">Open Cottages</a>
+          <a href="#">Kitchen & Grill</a>
+          <a href="#">Bonfire Area</a>
+          <a href="#">Tent Pitching</a>
+          <a href="#">Generator Backup</a>
+        </div>
+      </div>
+
+        <div class="dropdown">
+        <a href="#">Gallery</a>
+        <div class="dropdown-content">
+          <a href="#">Rooms</a>
+          <a href="#">Cottages</a>
+          <a href="#">Beachfront</a>
+          <a href="#">Events</a>
+        </div>
+      </div>
+
+        <div class="dropdown">
+      <a href="#">Rates & Packages</a>
+      <div class="dropdown-content">
+        <a href="#">Room Rates</a>
+        <a href="#">Inclusions</a>
+        <a href="#">Exclusions</a>
+        <a href="#">Family / Barkada Packages</a>
+      </div>
+    </div>
+
+
+      <div class="dropdown">
+      <a href="#">Events</a>
+      <div class="dropdown-content">
+        <a href="#">Family Gatherings</a>
+        <a href="#">Team Building</a>
+        <a href="#">Birthday Celebrations</a>
+        <a href="#">Bonfire Nights</a>
+      </div>
+    </div>
+      <a href="#">About</a>
+
+
+      <div class="dropdown">
+    <a href="#">Contact</a>
+    <div class="dropdown-content">
+      <a href="#">📍 Location</a>
+      <a href="#">📱 Call / Text</a>
+      <a href="#">📩 Messenger / FB Page</a>
+      <a href="#">Reservation Form</a>
+    </div>
+  </div>
+    </nav>
+
+    <div class="right-actions">
+      <a href="javascript:void(0);" onclick="openLogin()">Log In</a>
+      <span>|</span>
+      <a href="signup.html">Create Account</a>
+      <a href="#"><i class="fa fa-heart"></i> Favorites</a>
+      <div class="search-box">
+        <input type="text" placeholder="Search Dampa Resort...">
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+
+    <a href="#" class="search-icon"><i class="fa fa-search"></i></a>
+  </header>
+
+  <section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to Dampa Resort</h1>
+    <p>Your dream vacation starts here</p><br>
+    <button class="book-now" onclick="window.location.href='rooms.html'">Book Now</button>
+  </div>
+</section>
+
+ <section class="featured">
+    <h3>Featured Experiences</h3>
+    <p>Discover the best of Dampa Resort</p>
+    <div class="featured-grid">
+      <div class="featured-card">
+        <img src="images/r1.jpg" alt="Luxury Rooms">
+        <div class="content">
+          <h4>Luxury Rooms</h4>
+          <p>Stay in beautifully designed rooms with modern amenities and scenic views.</p>
+          <a href="rooms.html">Explore Rooms →</a>
+        </div>
+      </div>
+      <div class="featured-card">
+        <img src="images/r2.jpg" alt="Infinity Pool">
+        <div class="content">
+          <h4>Infinity Pool</h4>
+          <p>Relax in our stunning infinity pool overlooking the lush landscapes.</p>
+          <a href="#">Explore Pool →</a>
+        </div>
+      </div>
+      <div class="featured-card">
+        <img src="images/r3.jpg" alt="Fine Dining">
+        <div class="content">
+          <h4>Fine Dining</h4>
+          <p>Experience world-class cuisines crafted by our expert chefs.</p>
+          <a href="#">Explore Dining →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE DAMPA RESORT -->
+  <section class="why">
+    <h3>Why Choose Dampa Resort</h3>
+    <p>Experience relaxation, comfort, and adventure in one destination</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <i class="fas fa-bed"></i>
+        <h4>Cozy Accommodations</h4>
+        <p>Modern rooms and villas designed for ultimate relaxation.</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-utensils"></i>
+        <h4>Exquisite Dining</h4>
+        <p>Enjoy local and international delicacies with fresh ingredients.</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-water"></i>
+        <h4>Resort Amenities</h4>
+        <p>Infinity pools, spa, and leisure facilities for everyone.</p>
+      </div>
+      <div class="why-item">
+        <i class="fas fa-tree"></i>
+        <h4>Nature Escape</h4>
+        <p>Reconnect with nature amidst breathtaking views and fresh air.</p>
+      </div>
+    </div>
+  </section>
+  <!-- LOCATION -->
+  <section class="location">
+    <h3>Our Location</h3>
+    <p>Find us easily and start your unforgettable getaway</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="location-details">
+      <div><h4>Address</h4><p>Barangay X, City Y, Philippines</p></div>
+      <div><h4>Contact</h4><p>📞 +63 912 345 6789<br>📧 info@damparesort.com</p></div>
+      <div><h4>Directions</h4><p>Just 10 minutes from the city center, near the bay area.</p></div>
+    </div>
+  </section>
+
+  
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <img src="images/Dampa Logo.png" alt="Dampa Resort Logo">
+        <p class="text-sm">Dampa Resort offers a perfect blend of luxury, relaxation, and adventure — your ultimate getaway.</p>
+      </div>
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="rooms.html">Book a Room</a></li>
+          <li><a href="#">Amenities</a></li>
+          <li><a href="#">Packages</a></li>
+          <li><a href="#">Events</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Guest Services</h5>
+        <ul>
+          <li><a href="#">Promotions</a></li>
+          <li><a href="#">Resort Map</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Follow Us</h5>
+        <div class="socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Dampa Resort. All Rights Reserved.
+    </div>
+  </footer>
+
+
+  
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLogin()">&times;</span>
+      <form class="login">
+        <h2 style="text-align:center; margin-bottom: 20px; color:#3D1203;">Login</h2>
+
+        <div class="form-group">
+          <label for="username">Email</label>
+          <input type="text" id="username" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group password-container">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+          <i class="fas fa-eye" id="togglePassword"></i>
+        </div>
+
+        <div class="forgot-password">
+          <a href="#">Forgot Password?</a>
+        </div>
+        <br>
+
+        <div style="text-align:center;">
+          <button type="submit">Log In</button>
+        </div>
+
+        <p class="signup-link" style="text-align:center; margin-top: 15px; font-size: 0.9rem; color:#3D1203;">
+          Don’t have an account? 
+          <a href="signup.html" style="color:#000; text-decoration: underline;">Sign up now</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    
+    function openLogin() {
+      document.getElementById("loginModal").style.display = "flex";
+    }
+    function closeLogin() {
+      document.getElementById("loginModal").style.display = "none";
+    }
+
+    
+    window.onclick = function(event) {
+      const modal = document.getElementById("loginModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+  
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("password");
+    togglePassword.onclick = () => {
+      const type = passwordField.type === "password" ? "text" : "password";
+      passwordField.type = type;
+      togglePassword.classList.toggle("fa-eye-slash");
+    }
+  </script>
+</body>
+</html>

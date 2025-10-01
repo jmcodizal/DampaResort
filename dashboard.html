@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <!-- === HEADER WITH NAVIGATION BUTTONS === -->
+  <header>
+    <h1>Admin Dashboard</h1>
+    <nav>
+      <button class="nav-btn active" data-section="revenue">Revenue</button>
+      <button class="nav-btn" data-section="history">Booking History</button>
+      <button class="nav-btn" data-section="calendar">Calendar</button>
+      <button class="nav-btn" data-section="actions">Quick Actions</button>
+    </nav>
+  </header>
+
+  <!-- === NOTIFICATION BAR === -->
+  <div class="notification-bar" id="notificationBar">
+    <i class="fa-solid fa-triangle-exclamation"></i> No conflicts detected.
+  </div>
+
+  <!-- === MAIN CONTENT (Switchable Sections) === -->
+  <main>
+    <!-- Revenue Reports -->
+    <section class="card section" id="revenue">
+      <h2>Revenue Reports</h2>
+      <div class="revenue-stats">
+        <p><strong>Monthly:</strong> ₱120,000</p>
+        <p><strong>Weekly:</strong> ₱30,000</p>
+        <p><strong>Yearly:</strong> ₱1,450,000</p>
+      </div>
+    </section>
+
+    <!-- Booking History -->
+    <section class="card section hidden" id="history">
+      <h2>Latest Booking & Checkout</h2>
+      <ul>
+        <li>John Doe - Room 101 - Checked in</li>
+        <li>Maria Cruz - Beach Villa - Checked out</li>
+        <li>Paul Santos - Deluxe Room - Upcoming</li>
+      </ul>
+    </section>
+
+    <!-- Calendar -->
+    <section class="card section hidden" id="calendar">
+      <h2>Mini Calendar</h2>
+      <div class="calendar-container">
+        <div id="calendarGrid"></div>
+        <div id="calendarDetails">
+          <h3>Booking Details</h3>
+          <ul id="bookingList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="card section hidden" id="actions">
+      <h2>Quick Actions</h2>
+      <div class="buttons">
+        <button class="btn"><i class="fa-solid fa-bed"></i> View All Bookings</button>
+        <button class="btn"><i class="fa-solid fa-door-open"></i> Manage Rooms</button>
+        <button class="btn"><i class="fa-solid fa-users"></i> Guest Info</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- === CALENDAR MODAL === -->
+  <div id="calendarModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Select Month and Year</h3>
+      <label for="month">Month:</label>
+      <select id="month">
+        <option value="0">January</option>
+        <option value="1">February</option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+        <option value="4">May</option>
+        <option value="5">June</option>
+        <option value="6">July</option>
+        <option value="7">August</option>
+        <option value="8">September</option>
+        <option value="9">October</option>
+        <option value="10">November</option>
+        <option value="11">December</option>
+      </select>
+      <label for="year">Year:</label>
+      <input type="number" id="year" value="2025" min="2000" max="2100">
+      <button id="generateBtn">Generate Calendar</button>
+    </div>
+  </div>
+
+  <!-- === FOOTER === -->
+  <footer>
+    <p>&copy; 2025 Booking Manager. All Rights Reserved.</p>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
