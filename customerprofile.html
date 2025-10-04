@@ -4,19 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Profile - Booking Manager</title>
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="customerprofile.css">
+
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-  <!-- === HEADER (Top Profile Banner) === -->
+  
+  <!-- =========================
+       HEADER SECTION
+  ========================== -->
   <header>
     <div class="profile-header">
-      <!-- Left: User Picture -->
+      
+      <!-- Profile Picture -->
       <div class="profile-pic">
         <img id="profileImage" src="images/userimg.jpg" alt="User Picture">
       </div>
 
-      <!-- Right: Text -->
+      <!-- Profile Name & Tagline -->
       <div class="profile-text">
         <h1 id="profileName">John Doe</h1>
         <p>Manage your account and bookings</p>
@@ -24,49 +32,62 @@
     </div>
   </header>
 
-  <!-- === MAIN CONTENT === -->
+  
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
   <main>
-    <!-- Personal Info with Image Uploader -->
-    <!-- Personal Info Card -->
-<section class="card personal-info">
-  <h2>Personal Information</h2>
-  <div class="info-display">
-    <p><strong>Name:</strong> <span id="displayName">John Doe</span></p>
-    <p><strong>Email:</strong> <span id="displayEmail">johndoe@email.com</span></p>
-    <p><strong>Phone:</strong> <span id="displayPhone">+63 912 345 6789</span></p>
-    <button id="editProfileBtn" class="btn modify">
-      <i class="fa-solid fa-pen"></i> Edit Profile
-    </button>
-  </div>
-</section>
-
-<!-- === POPUP MODAL (Hidden by default) === -->
-<div id="profileModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h2>Edit Personal Information</h2>
-    <form class="personal-form" id="personalForm">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" value="John Doe">
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" value="johndoe@email.com">
-
-      <label for="phone">Phone</label>
-      <input type="tel" id="phone" name="phone" value="+63 912 345 6789">
-
-      <label for="uploadPic">Upload New Picture</label>
-      <input type="file" id="uploadPic" accept="image/*">
-
-      <button type="submit" class="btn confirm">
-        <i class="fa-solid fa-save"></i> Save Changes
-      </button>
-    </form>
-  </div>
-</div>
+    
+    <!-- PERSONAL INFORMATION CARD -->
+    <section class="card personal-info">
+      <h2>Personal Information</h2>
+      <div class="info-display">
+        <p><strong>Name:</strong> <span id="displayName">John Doe</span></p>
+        <p><strong>Email:</strong> <span id="displayEmail">johndoe@email.com</span></p>
+        <p><strong>Phone:</strong> <span id="displayPhone">+63 912 345 6789</span></p>
+        
+        <!-- Button to open modal -->
+        <button id="editProfileBtn" class="btn modify">
+          <i class="fa-solid fa-pen"></i> Edit Profile
+        </button>
+      </div>
+    </section>
 
 
-    <!-- Booking History -->
+    <!-- MODAL for Editing Profile -->
+    <div id="profileModal" class="modal">
+      <div class="modal-content">
+        <!-- Close Button -->
+        <span class="close-btn">&times;</span>
+        
+        <h2>Edit Personal Information</h2>
+        <form class="personal-form" id="personalForm">
+          <!-- Name -->
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" value="John Doe">
+
+          <!-- Email -->
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="johndoe@email.com">
+
+          <!-- Phone -->
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" value="+63 912 345 6789">
+
+          <!-- Upload Picture -->
+          <label for="uploadPic">Upload New Picture</label>
+          <input type="file" id="uploadPic" accept="image/*">
+
+          <!-- Save Changes -->
+          <button type="submit" class="btn confirm">
+            <i class="fa-solid fa-save"></i> Save Changes
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- BOOKING HISTORY CARD -->
     <section class="card booking-history">
       <h2>Booking History</h2>
       <ul>
@@ -76,13 +97,15 @@
       </ul>
     </section>
 
-    <!-- Spending Summary -->
+
+    <!-- SPENDING SUMMARY CARD -->
     <section class="card spending-summary">
       <h2>Spending Summary</h2>
       <p>Total Amount Spent: <strong>₱75,000</strong></p>
     </section>
 
-    <!-- Options -->
+
+    <!-- MANAGE BOOKINGS (Buttons) -->
     <section class="card options">
       <h2>Manage Bookings</h2>
       <div class="buttons">
@@ -94,11 +117,15 @@
     </section>
   </main>
 
-  <!-- === FOOTER === -->
+  
+  <!-- =========================
+       FOOTER SECTION
+  ========================== -->
   <footer>
     <p>&copy; 2025 Booking Manager. All Rights Reserved.</p>
   </footer>
 
+  <!-- JavaScript -->
   <script src="customerprofile.js"></script>
 </body>
 </html>

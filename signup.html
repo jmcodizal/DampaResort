@@ -4,73 +4,85 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup Form</title>
+
+  <!-- External CSS -->
   <link rel="stylesheet" href="signup.css">
-  <!-- Font Awesome -->
+
+  <!-- Font Awesome (optional, not used here but ready if needed) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Bootstrap Icons -->
+
+  <!-- Bootstrap Icons (used for eye icons in password fields) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </head>
 <body>
 
+  <!-- Main container: split into image (left) + form (right) -->
   <div class="container">
-   
+    
+    <!-- Left side image -->
     <div class="dampa">
-
       <img src="images/img5.jpg" alt="Dampa Picture">
     </div>
 
-   
+    <!-- Signup Form -->
     <form>
       <h2>Signup Form</h2>
 
+      <!-- Row for first + last name -->
       <div class="form-row">
-      <div class="form-group">
-        <label for="first-name">First Name:</label>
-        <input type="text" id="first-name" placeholder="Enter your first name">
+        <div class="form-group">
+          <label for="first-name">First Name:</label>
+          <input type="text" id="first-name" placeholder="Enter your first name">
+        </div>
+
+        <div class="form-group">
+          <label for="last-name">Last Name:</label>
+          <input type="text" id="last-name" placeholder="Enter your last name" required>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="last-name">Last Name:</label>
-        <input type="text" id="last-name" placeholder="Enter your last name" required>
-      </div>
-    </div>
-
-
+      <!-- Email -->
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="text" id="email" placeholder="Enter your email" required>
       </div>
 
-     <div class="form-group">
-      <label for="password">Password:</label>
-      <div class="password-container">
-        <input type="password" id="password" placeholder="Enter your password" required>
-        <i class="bi bi-eye-fill" id="togglePassword"></i> <!-- Brown eye -->
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <div class="password-container">
+          <input type="password" id="password" placeholder="Enter your password" required>
+          <!-- Eye icon to toggle password visibility -->
+          <i class="bi bi-eye-fill" id="togglePassword"></i>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="confirmPassword">Confirm Password:</label>
-      <div class="password-container">
-        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-        <i class="bi bi-eye-fill" id="toggleConfirm"></i> <!-- Brown eye -->
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <div class="password-container">
+          <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+          <!-- Eye icon to toggle confirm password visibility -->
+          <i class="bi bi-eye-fill" id="toggleConfirm"></i>
+        </div>
       </div>
-    </div>
 
-
-
+      <!-- Signup button -->
       <center>
         <button type="submit">Signup</button>
       </center>
 
+      <!-- Already have account link -->
       <div class="has-account">
         <p class="signup-text">
-        Already have account? 
-        <a href="login.html">Login now</a>
-      </p>
+          Already have an account? 
+          <a href="login.html">Login now</a>
+        </p>
       </div>
     </form>
   </div>
+
+  <!-- Signup JS for interactivity (password toggle, etc.) -->
   <script src="signup.js"></script>
 
 </body>

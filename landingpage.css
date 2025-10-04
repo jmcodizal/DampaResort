@@ -1,3 +1,6 @@
+/* ============================
+   Global Reset & Body Styling
+=============================== */
 * { 
   margin: 0; 
   padding: 0; 
@@ -11,11 +14,14 @@ body {
 }
 
 
+/* ============================
+   Navigation Bar
+=============================== */
 .topnav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #E8C580; 
+  background: #E8C580; /* Gold Crayola */
   padding: 10px 20px;
   position: fixed;
   top: 0; 
@@ -35,14 +41,14 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: #3D1203;
+  color: #3D1203; /* Black Bean */
   font-size: 14px;
   font-weight: 600;
   transition: color 0.3s;
 }
 
 .nav-links a:hover {
-  color: #BA3D03; 
+  color: #BA3D03; /* Mahogany */
 }
 
 .right-actions {
@@ -59,7 +65,7 @@ body {
 }
 
 .right-actions a:hover {
-  color: #E48523; 
+  color: #E48523; /* Cadmium Orange */
 }
 
 .search-box {
@@ -82,10 +88,14 @@ body {
   color: #7f492b;
 }
 
+/* Mobile menu icons */
 .icon, .search-icon {
   display: none;
 }
 
+/* ============================
+   Responsive Navbar (Mobile)
+=============================== */
 @media screen and (max-width: 768px) {
   .nav-links, .right-actions {
     display: none;
@@ -129,6 +139,9 @@ body {
 }
 
 
+/* ============================
+   Hero Section
+=============================== */
 .hero {
   height: 100vh;
   background: url('images/img1.jpg') center/cover no-repeat;
@@ -147,7 +160,7 @@ body {
   left: 0;
   width: 100%; 
   height: 100%;
-  background: rgba(61, 18, 3, 0.5); 
+  background: rgba(61, 18, 3, 0.5); /* dark overlay */
 }
 
 .hero-content {
@@ -164,11 +177,14 @@ body {
 
 .hero-content p {
   font-size: 1.2rem;
-  color: #E8C580; 
+  color: #E8C580; /* Gold Crayola */
   text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
 }
 
 
+/* ============================
+   Dropdown Menu
+=============================== */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -205,28 +221,34 @@ body {
   display: block;
 }
 
+
+/* ============================
+   Book Now Button
+=============================== */
 .book-now {
-  background-color: #7A1C1C; 
+  background-color: #7A1C1C; /* deep red */
   color: #ffffff;
-  padding: 10px 24px;   /* balanced padding */
+  padding: 10px 24px;
   border: none;
-  border-radius: 4px;   /* slight rounding */
+  border-radius: 4px;
   font-weight: bold;
   font-size: 15px;
   text-transform: uppercase; 
   cursor: pointer;
-  display: inline-block; /* keeps it normal button size */
-  width: auto; /* prevents stretching */
+  display: inline-block;
+  width: auto;
   transition: background 0.3s, transform 0.2s;
 }
 
 .book-now:hover {
-  background-color: #5E1414; /* darker on hover */
+  background-color: #5E1414; /* darker red */
   transform: scale(1.05);
 }
 
 
-
+/* ============================
+   Modal (Login/Register)
+=============================== */
 .modal {
   display: none; 
   position: fixed; 
@@ -240,7 +262,6 @@ body {
   align-items: center;
 }
 
-
 .modal-content {
   background: transparent;
   border-radius: 10px;
@@ -249,6 +270,7 @@ body {
   padding: 20px;
   position: relative;
 }
+
 .close {
   position: absolute;
   top: 10px; 
@@ -259,7 +281,6 @@ body {
   cursor: pointer;
 }
 
-
 .login {
   background-color: #E8C580;
   padding: 30px 25px;
@@ -268,17 +289,19 @@ body {
   text-align: left;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
+
 .login h2 {
   margin-bottom: 20px;
   color: #3D1203;
 }
 
-
+/* Form styling */
 .form-group {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
 }
+
 input[type=text],
 input[type=email],
 input[type=password] {
@@ -289,20 +312,22 @@ input[type=password] {
   width: 100%;
   font-size: 14px;
 }
+
 input:focus {
   border-color: #E48523;
   outline: none;
   box-shadow: 0 0 6px rgba(228,133,35,0.4);
 }
 
-
 .password-container {
   position: relative;
   width: 100%;
 }
+
 .password-container input {
   padding-right: 40px;
 }
+
 .password-container i {
   position: absolute;
   right: 10px;
@@ -313,18 +338,17 @@ input:focus {
   color: #7f492b;
 }
 
-
 .forgot-password {
   margin-top: 10px;
   text-align: center;
   font-size: 0.875rem;
   color: #3D1203;
 }
+
 .forgot-password a {
   color: #3D1203;
   text-decoration: underline;
 }
-
 
 button {
   background-color: #3D1203;
@@ -338,20 +362,16 @@ button {
   transition: 0.3s;
   width: 100%;
 }
+
 button:hover {
   background-color: #BA3D03;
   transform: scale(1.05);
 }
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  color: #3D1203; /* Black Bean as base text */
-}
 
-/* Section Titles */
+/* ============================
+   Section Styling
+=============================== */
 h3 {
   font-size: 1.8rem;
   font-weight: bold;
@@ -363,7 +383,10 @@ p {
   color: #3D1203; /* Black Bean */
 }
 
-/* Featured Collections (Resort Features) */
+
+/* ============================
+   Featured Collections
+=============================== */
 .featured {
   padding: 4rem 1.5rem;
   text-align: center;
@@ -403,25 +426,28 @@ p {
 }
 
 .featured-card h4 {
-  color: #BA3D03; /* Mahogany */
+  color: #BA3D03;
   font-weight: bold;
   margin-bottom: 8px;
 }
 
 .featured-card a {
-  color: #E48523; /* Cadmium Orange */
+  color: #E48523;
   font-weight: 600;
   text-decoration: none;
 }
 
 .featured-card a:hover {
-  color: #E8C580; /* Gold Crayola */
+  color: #E8C580;
   text-decoration: underline;
 }
 
-/* Why Choose Us */
+
+/* ============================
+   Why Choose Us Section
+=============================== */
 .why {
-  background: #FDF7F0; /* soft neutral background */
+  background: #FDF7F0;
   padding: 4rem 1.5rem;
   text-align: center;
 }
@@ -436,92 +462,20 @@ p {
 
 .why-item i {
   font-size: 2rem;
-  color: #E48523; /* Cadmium Orange */
+  color: #E48523;
   margin-bottom: 1rem;
 }
 
 .why-item h4 {
-  color: #3D1203; /* Black Bean */
+  color: #3D1203;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-/* Footer */
-footer {
-  background: #3D1203; /* Black Bean */
-  color: white;
-  padding: 3rem 1.5rem;
-  margin-top: 4rem;
-}
 
-footer .footer-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-footer img {
-  width: 60px;
-  margin-bottom: 1rem;
-}
-
-footer h5 {
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #E8C580; /* Gold Crayola */
-}
-
-footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-footer ul li {
-  margin-bottom: 0.5rem;
-}
-
-footer ul li a {
-  text-decoration: none;
-  color: #eee;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-
-footer ul li a:hover {
-  color: #E48523; /* Cadmium Orange */
-}
-
-footer .socials {
-  display: flex;
-  gap: 1rem;
-  font-size: 1.2rem;
-}
-
-footer .socials a {
-  color: white;
-  transition: 0.3s;
-}
-
-footer .socials a:hover {
-  color: #E8C580; /* Gold */
-}
-
-.footer-bottom {
-  text-align: center;
-  font-size: 0.8rem;
-  color: #C5A07E; /* Pale Taupe */
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #E48523; /* Cadmium Orange line */
-}
-
-footer p{
-  font-family:Arial, Helvetica, sans-serif;
-  color: white;
-}
-
+/* ============================
+   Location Section
+=============================== */
 .location {
   background: #fff;
   padding: 4rem 1.5rem;
@@ -529,7 +483,7 @@ footer p{
 }
 
 .location h3 {
-  color: #BA3D03; /* Mahogany */
+  color: #BA3D03;
   margin-bottom: 10px;
 }
 
@@ -559,4 +513,83 @@ footer p{
 .location-details h4 {
   color: #E48523;
   margin-bottom: 0.5rem;
+}
+
+
+/* ============================
+   Footer
+=============================== */
+footer {
+  background: #3D1203;
+  color: white;
+  padding: 3rem 1.5rem;
+  margin-top: 4rem;
+}
+
+footer .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+footer img {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+footer h5 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #E8C580;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+footer ul li a {
+  text-decoration: none;
+  color: #eee;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+footer ul li a:hover {
+  color: #E48523;
+}
+
+footer .socials {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+footer .socials a {
+  color: white;
+  transition: 0.3s;
+}
+
+footer .socials a:hover {
+  color: #E8C580;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #C5A07E;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #E48523;
+}
+
+footer p {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
 }

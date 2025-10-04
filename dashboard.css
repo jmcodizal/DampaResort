@@ -1,51 +1,53 @@
+/* === COLOR VARIABLES (Custom Theme Palette) === */
 :root {
-  --black-bean: #3D1203;
-  --mahogany: #BA3D03;
-  --cadmium-orange: #E48523;
-  --gold-crayola: #E8C580;
-  --pale-taupe: #C5A07E;
+  --black-bean: #3D1203;       /* Dark brownish-black for headers & footer */
+  --mahogany: #BA3D03;         /* Reddish accent (buttons, alerts) */
+  --cadmium-orange: #E48523;   /* Main orange for buttons & highlights */
+  --gold-crayola: #E8C580;     /* Gold shade for highlights and stats */
+  --pale-taupe: #C5A07E;       /* Neutral beige for cards */
 
-  --text-light: #fff;
-  --text-dark: #2c2c2c;
-  --bg-light: #fffaf5;
+  --text-light: #fff;          /* White text */
+  --text-dark: #2c2c2c;        /* Dark text for readability */
+  --bg-light: #fffaf5;         /* Soft background color */
 }
 
-/* Reset */
+/* === RESET (Normalize styles) === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif; /* Default font */
 }
 
+/* === BODY LAYOUT === */
 body {
-  background: var(--bg-light);
-  color: var(--text-dark);
-  line-height: 1.6;
+  background: var(--bg-light); /* Light background */
+  color: var(--text-dark);     /* Dark readable text */
+  line-height: 1.6;            /* Better readability */
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh;           /* Full height page */
 }
 
-/* Header */
+/* === HEADER === */
 header {
   background: var(--black-bean);
   color: var(--gold-crayola);
   padding: 1rem 2rem;
   text-align: center;
-  font-family: "Playfair Display", serif;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-family: "Playfair Display", serif; /* Elegant font for titles */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* Subtle shadow */
 }
 
 header h1 {
   margin-bottom: 0.5rem;
 }
 
-/* Navigation Buttons */
+/* === NAVIGATION BUTTONS === */
 nav {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1rem;        /* Space between buttons */
   margin-top: 0.5rem;
 }
 
@@ -57,7 +59,7 @@ nav {
   padding: 0.6rem 1rem;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
+  transition: 0.3s; /* Smooth hover transition */
 }
 
 .nav-btn:hover {
@@ -69,7 +71,7 @@ nav {
   color: var(--black-bean);
 }
 
-/* Notification Bar */
+/* === NOTIFICATION BAR === */
 .notification-bar {
   background: var(--mahogany);
   color: var(--text-light);
@@ -78,7 +80,7 @@ nav {
   font-weight: bold;
 }
 
-/* Main Layout */
+/* === MAIN LAYOUT === */
 main {
   flex: 1;
   padding: 2rem;
@@ -86,14 +88,14 @@ main {
   justify-content: center;
 }
 
-/* Cards */
+/* === CARDS (Content Containers) === */
 .card {
   background: var(--pale-taupe);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   width: 100%;
-  max-width: 900px;
+  max-width: 900px; /* Prevents stretching on big screens */
 }
 
 .card h2 {
@@ -102,12 +104,12 @@ main {
   color: var(--black-bean);
 }
 
-/* Sections Hidden */
+/* Hide inactive sections */
 .hidden {
   display: none;
 }
 
-/* Revenue Stats */
+/* === REVENUE STATS === */
 .revenue-stats p {
   background: var(--gold-crayola);
   padding: 0.5rem 1rem;
@@ -116,7 +118,7 @@ main {
   font-weight: bold;
 }
 
-/* Booking History */
+/* === BOOKING HISTORY LIST === */
 .card ul {
   list-style: none;
 }
@@ -126,7 +128,7 @@ main {
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-/* Buttons */
+/* === QUICK ACTIONS BUTTONS === */
 .buttons {
   display: flex;
   flex-direction: column;
@@ -146,10 +148,10 @@ main {
 
 .btn:hover {
   background: var(--mahogany);
-  transform: scale(1.05);
+  transform: scale(1.05); /* Small zoom effect */
 }
 
-/* Calendar Layout */
+/* === CALENDAR LAYOUT === */
 .calendar-container {
   display: flex;
   gap: 20px;
@@ -157,11 +159,11 @@ main {
 }
 
 #calendarGrid {
-  flex: 1;
+  flex: 1; /* Calendar takes half width */
 }
 
 #calendarDetails {
-  flex: 1;
+  flex: 1; /* Booking details on the side */
   background: #f9f2e8;
   padding: 15px;
   border-radius: 10px;
@@ -187,7 +189,7 @@ main {
   font-size: 14px;
 }
 
-/* Calendar Day Cells */
+/* Calendar day cells */
 #calendarGrid div {
   background: var(--gold-crayola);
   padding: 10px;
@@ -198,6 +200,7 @@ main {
   color: var(--black-bean);
 }
 
+/* Booked dates */
 #calendarGrid div.booked {
   background: #BA3D03 !important;
   color: #fff !important;
@@ -205,7 +208,7 @@ main {
   border: 2px solid #000;
 }
 
-/* Footer */
+/* === FOOTER === */
 footer {
   background: var(--black-bean);
   color: var(--gold-crayola);
@@ -213,14 +216,14 @@ footer {
   padding: 1rem;
 }
 
-/* === Modal Styles === */
+/* === MODAL STYLES === */
 .modal {
   display: none; 
   position: fixed; 
   z-index: 1000; 
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.5); /* Dark overlay */
 }
 
 .modal-content {

@@ -1,12 +1,12 @@
-/* Body */
+/* ====== BODY STYLING ====== */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(to bottom right, #E8C580, #E48523); /* Gold Crayola → Cadmium Orange */
   padding: 40px;
-  color: #3D1203; 
+  color: #3D1203; /* Dark brown text */
 }
 
-/* Main container */
+/* ====== MAIN CONTAINER ====== */
 .container {
   display: flex;
   gap: 30px;
@@ -15,38 +15,38 @@ body {
   border-radius: 16px;
   padding: 30px;
   background-color: #ffffff;
-  box-shadow: 0px 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.15); /* subtle shadow */
   align-items: stretch;
-  border: 2px solid #C5A07E; /* Pale Taupe */
+  border: 2px solid #C5A07E; /* Pale Taupe border */
 }
 
-/* Image section */
+/* ====== IMAGE SECTION (LEFT SIDE) ====== */
 .dampa {
   flex: 1;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  border: 3px solid #E48523; /* Cadmium Orange */
+  border: 3px solid #E48523; /* Orange border */
   display: flex;
 }
 
 .dampa img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* ensures image fills area */
 }
 
-/* Form */
+/* ====== FORM (RIGHT SIDE) ====== */
 form {
   flex: 1;
   border-radius: 12px;
   padding: 25px;
-  background-color: #FFFDF8;
+  background-color: #FFFDF8; /* light cream */
   border: 2px solid #C5A07E; /* Pale Taupe */
   box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
 }
 
-/* Heading */
+/* ====== FORM HEADING ====== */
 h2 {
   margin-bottom: 20px;
   color: #3D1203; /* Black Bean */
@@ -56,41 +56,45 @@ h2 {
   letter-spacing: 1px;
 }
 
-/* Form sections */
+/* ====== FORM SECTIONS ====== */
 .form-section {
   margin-bottom: 20px;
 }
 
+/* Row with multiple inputs (ex: first + last name) */
 .form-row {
   display: flex;
   gap: 15px;
 }
 
+/* Make row inputs equal width */
 .form-row .form-group {
-  flex: 1; /* both fields take equal width */
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
+
+/* Standard form group */
 .form-group {
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
 }
 
-/* remove this old rule so inputs expand equally */
+/* REMOVE this old rule (shrinks input width unnecessarily) */
 .form-section:first-of-type input {
   width: 90%;
   max-width: 240px;
 }
 
-
+/* Labels */
 label {
   margin-bottom: 6px;
   font-weight: 600;
   color: #361f14; /* Deep brown */
 }
 
-/* Inputs */
+/* ====== INPUTS ====== */
 input[type=text],
 input[type=password] {
   padding: 10px 12px;
@@ -100,19 +104,20 @@ input[type=password] {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-
+/* Last section inputs take full width */
 .form-section:last-of-type input {
   width: 100%;
 }
 
+/* Focus effect */
 input[type=text]:focus,
 input[type=password]:focus {
-  border-color: #E48523; /* Cadmium Orange */
+  border-color: #E48523; /* Orange highlight */
   outline: none;
   box-shadow: 0 0 6px rgba(228,133,35,0.4);
 }
 
-/* Button */
+/* ====== BUTTON STYLING ====== */
 button {
   background-color: #3D1203; /* Black Bean */
   color: #ffffff;
@@ -130,7 +135,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Signup text */
+/* ====== SIGNUP TEXT (UNDER BUTTON) ====== */
 .signup-text {
   margin-top: 16px;
   text-align: center;
@@ -140,31 +145,32 @@ button:hover {
 }
 
 .signup-text a {
-  color: #E48523; /* Cadmium Orange */
+  color: #E48523; /* Orange link */
   text-decoration: underline;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .signup-text a:hover {
-  color: #BA3D03; /* Mahogany */
+  color: #BA3D03; /* Darker orange on hover */
 }
-/* Password + Confirm Password wrappers */
+
+/* ====== PASSWORD & CONFIRM PASSWORD (SHOW/HIDE ICON) ====== */
 .password-container,
 .confirm-password {
   position: relative;
   width: 100%;
 }
 
-/* Input inside password & confirm-password */
+/* Inputs inside password fields */
 .password-container input,
 .confirm-password input {
   width: 100%;
-  padding-right: 40px; /* make space for eye icon */
+  padding-right: 40px; /* space for eye icon */
   box-sizing: border-box;
 }
 
-/* Eye icon styling */
+/* Eye icon (toggle visibility) */
 .password-container i,
 .confirm-password i {
   position: absolute;
@@ -175,4 +181,3 @@ button:hover {
   font-size: 18px;
   color: #7f492b;
 }
-

@@ -1,15 +1,21 @@
+/* ================================
+   Color Variables (Custom Palette)
+================================= */
 :root {
-  --black-bean: #3D1203;      /* deep accent */
-  --mahogany: #BA3D03;        /* warm red-brown */
-  --cadmium-orange: #E48523;  /* sunset orange */
-  --gold-crayola: #E8C580;    /* soft sand */
-  --pale-taupe: #C5A07E;      /* driftwood tone */
-
-  --text-light: #fff;
-  --text-dark: #2c2c2c;
+  --black-bean: #3D1203;      /* Dark brown for header/footer & text highlights */
+  --mahogany: #BA3D03;        /* Deep reddish brown for buttons/statuses */
+  --cadmium-orange: #E48523;  /* Bright orange accent color */
+  --gold-crayola: #E8C580;    /* Warm beige/gold background and highlights */
+  --pale-taupe: #C5A07E;      /* Neutral taupe for card backgrounds */
+  
+  --text-light: #fff;         /* White text */
+  --text-dark: #2c2c2c;       /* Dark text */
 }
 
-/* Reset */
+
+/* ================================
+   Base Reset & Typography
+================================= */
 * {
   margin: 0;
   padding: 0;
@@ -18,39 +24,40 @@
 }
 
 body {
-  background: var(--gold-crayola);   /* soft sand background */
+  background: var(--gold-crayola);   /* Page background */
   color: var(--text-dark);
   line-height: 1.6;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh;  /* Ensures footer sticks to bottom */
 }
 
-/* Header */
+
+/* ================================
+   Header Section
+================================= */
 header {
   background: var(--black-bean);
   color: var(--gold-crayola);
   padding: 12px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* Soft shadow under header */
 }
 
 .profile-header {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.2rem; /* Space between profile pic & text */
 }
 
-/* Profile Picture */
 .profile-pic img {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes image circular */
   border: 3px solid var(--cadmium-orange);
-  object-fit: cover;
+  object-fit: cover;  /* Crops image neatly */
   background: var(--pale-taupe);
 }
 
-/* Profile Text */
 .profile-text h1 {
   font-family: "Playfair Display", serif;
   font-size: 2rem;
@@ -64,17 +71,23 @@ header {
   color: var(--cadmium-orange);
 }
 
-/* Main Layout */
+
+/* ================================
+   Main Layout (2-column grid)
+================================= */
 main {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
   gap: 1.5rem;
   padding: 2rem;
   align-items: stretch;
 }
 
-/* Cards */
+
+/* ================================
+   Card Styling (Reusable Blocks)
+================================= */
 .card {
   display: flex;
   flex-direction: column;
@@ -102,15 +115,13 @@ main {
   color: var(--black-bean);
 }
 
-/* Personal Info Section */
 .info-display p {
   margin-bottom: 0.4rem;
   font-size: 0.95rem;
 }
 
-/* Booking History */
 .card ul {
-  list-style: none;
+  list-style: none; /* Removes bullets */
   padding-left: 0;
 }
 
@@ -122,7 +133,10 @@ main {
   gap: 0.5rem;
 }
 
-/* Status Tags */
+
+/* ================================
+   Status Labels
+================================= */
 .status {
   font-weight: 600;
   font-size: 0.85rem;
@@ -134,7 +148,10 @@ main {
 .status.cancelled { background: var(--mahogany); color: var(--text-light); }
 .status.completed { background: var(--gold-crayola); color: var(--black-bean); }
 
-/* Buttons */
+
+/* ================================
+   Buttons (Action Controls)
+================================= */
 .buttons {
   display: flex;
   flex-wrap: wrap;
@@ -158,10 +175,13 @@ main {
 
 .btn:hover {
   opacity: 0.9;
-  transform: scale(1.05);
+  transform: scale(1.05); /* Subtle zoom effect */
 }
 
-/* Footer */
+
+/* ================================
+   Footer Section
+================================= */
 footer {
   background: var(--black-bean);
   color: var(--gold-crayola);
@@ -170,7 +190,10 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Personal Info Form */
+
+/* ================================
+   Personal Form (Edit Profile)
+================================= */
 .personal-form {
   display: flex;
   flex-direction: column;
@@ -203,9 +226,12 @@ footer {
   cursor: pointer;
 }
 
-/* Modal */
+
+/* ================================
+   Modal (Popup for Editing Info)
+================================= */
 .modal {
-  display: none;
+  display: none; /* Hidden by default */
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -213,7 +239,7 @@ footer {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
 }
 
 .modal-content {

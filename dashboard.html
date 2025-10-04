@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
+
+  <!-- === STYLESHEET LINKS === -->
+  <!-- Custom CSS file for dashboard styling -->
   <link rel="stylesheet" href="dashboard.css">
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
@@ -12,6 +16,7 @@
   <header>
     <h1>Admin Dashboard</h1>
     <nav>
+      <!-- Navigation buttons switch between different sections -->
       <button class="nav-btn active" data-section="revenue">Revenue</button>
       <button class="nav-btn" data-section="history">Booking History</button>
       <button class="nav-btn" data-section="calendar">Calendar</button>
@@ -20,13 +25,14 @@
   </header>
 
   <!-- === NOTIFICATION BAR === -->
+  <!-- Displays important alerts or system status -->
   <div class="notification-bar" id="notificationBar">
     <i class="fa-solid fa-triangle-exclamation"></i> No conflicts detected.
   </div>
 
-  <!-- === MAIN CONTENT (Switchable Sections) === -->
+  <!-- === MAIN CONTENT AREA (Switchable Sections) === -->
   <main>
-    <!-- Revenue Reports -->
+    <!-- Revenue Reports Section -->
     <section class="card section" id="revenue">
       <h2>Revenue Reports</h2>
       <div class="revenue-stats">
@@ -36,7 +42,7 @@
       </div>
     </section>
 
-    <!-- Booking History -->
+    <!-- Booking History Section -->
     <section class="card section hidden" id="history">
       <h2>Latest Booking & Checkout</h2>
       <ul>
@@ -46,11 +52,13 @@
       </ul>
     </section>
 
-    <!-- Calendar -->
+    <!-- Calendar Section -->
     <section class="card section hidden" id="calendar">
       <h2>Mini Calendar</h2>
       <div class="calendar-container">
+        <!-- Placeholder for calendar grid -->
         <div id="calendarGrid"></div>
+        <!-- Booking details displayed here -->
         <div id="calendarDetails">
           <h3>Booking Details</h3>
           <ul id="bookingList"></ul>
@@ -58,10 +66,11 @@
       </div>
     </section>
 
-    <!-- Quick Actions -->
+    <!-- Quick Actions Section -->
     <section class="card section hidden" id="actions">
       <h2>Quick Actions</h2>
       <div class="buttons">
+        <!-- Shortcuts for admins to quickly access common features -->
         <button class="btn"><i class="fa-solid fa-bed"></i> View All Bookings</button>
         <button class="btn"><i class="fa-solid fa-door-open"></i> Manage Rooms</button>
         <button class="btn"><i class="fa-solid fa-users"></i> Guest Info</button>
@@ -70,10 +79,14 @@
   </main>
 
   <!-- === CALENDAR MODAL === -->
+  <!-- Popup modal for selecting month/year -->
   <div id="calendarModal" class="modal">
     <div class="modal-content">
+      <!-- Close button -->
       <span class="close-btn">&times;</span>
       <h3>Select Month and Year</h3>
+
+      <!-- Month Selector -->
       <label for="month">Month:</label>
       <select id="month">
         <option value="0">January</option>
@@ -89,8 +102,12 @@
         <option value="10">November</option>
         <option value="11">December</option>
       </select>
+
+      <!-- Year Input -->
       <label for="year">Year:</label>
       <input type="number" id="year" value="2025" min="2000" max="2100">
+
+      <!-- Generate calendar button -->
       <button id="generateBtn">Generate Calendar</button>
     </div>
   </div>
@@ -100,6 +117,7 @@
     <p>&copy; 2025 Booking Manager. All Rights Reserved.</p>
   </footer>
 
+  <!-- === JAVASCRIPT FILE === -->
   <script src="dashboard.js"></script>
 </body>
 </html>
