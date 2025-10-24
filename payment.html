@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💰 Payments & Reports | Resort Admin</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --black-bean: #3D1203;
+      --mahogany: #BA3D03;
+      --cadmium-orange: #E48523;
+      --gold: #E8C580;
+      --pale-taupe: #C5A07E;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, var(--gold) 0%, var(--pale-taupe) 100%);
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background-color: var(--black-bean);
+    }
+    .navbar-brand {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .card {
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-custom {
+      background-color: var(--mahogany);
+      color: #fff;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: var(--cadmium-orange);
+      color: #fff;
+    }
+
+    table thead {
+      background-color: var(--mahogany);
+      color: #fff;
+    }
+
+    table tbody tr:nth-child(even) {
+      background-color: #fff9f4;
+    }
+
+    .revenue-summary {
+      font-size: 1.1rem;
+      color: var(--black-bean);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #3d2b1f;
+      margin-top: 2rem;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-3">
+    <a class="navbar-brand" href="#">🏖️ Resort Admin</a>
+  </nav>
+
+  <div class="container py-4">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+      <h2 class="fw-bold" style="color: var(--black-bean);">Payments & Reports</h2>
+      <button id="refreshBtn" class="btn btn-custom mt-3 mt-md-0">
+        <i class="bi bi-arrow-clockwise me-2"></i>Refresh Data
+      </button>
+    </div>
+
+    <!-- Payment Table -->
+    <div class="card p-4 mb-4">
+      <h5 class="fw-bold mb-3" style="color: var(--mahogany);">All Payments</h5>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle" id="paymentTable">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>User</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="paymentBody">
+            <tr><td colspan="4" class="text-center text-muted py-3">Loading payments...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-end mt-2">
+        <span class="fw-bold revenue-summary">Total Monthly Revenue: <span id="monthlyRevenue">₱0</span></span>
+      </div>
+    </div>
+
+    <!-- Reports -->
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card p-4">
+          <h5 class="fw-bold mb-3" style="color: var(--mahogany);">Revenue Trends</h5>
+          <canvas id="revenueChart" height="150"></canvas>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card p-4">
+          <h5 class="fw-bold mb-3" style="color: var(--mahogany);">Most Booked Rooms</h5>
+          <canvas id="roomChart" height="150"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download Buttons -->
+    <div class="text-end mt-4">
+      <button class="btn btn-custom me-2" id="downloadPDF"><i class="bi bi-file-earmark-pdf me-2"></i>Download PDF</button>
+      <button class="btn btn-outline-dark" id="downloadExcel"><i class="bi bi-file-earmark-excel me-2"></i>Download Excel</button>
+    </div>
+
+  </div>
+
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // === Fetch Dynamic Data (Simulated API for now) ===
+    async function fetchPaymentData() {
+      try {
+        // Replace this with your real backend endpoint later
+        const response = await fetch("/api/payments-reports");
+        const data = await response.json();
+
+        renderPayments(data.payments);
+        renderCharts(data.revenueTrends, data.mostBookedRooms);
+        computeMonthlyRevenue(data.payments);
+
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    // === Render Payments Table ===
+    function renderPayments(payments) {
+      const tbody = document.getElementById("paymentBody");
+      tbody.innerHTML = "";
+
+      if (!payments || payments.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">No payment data available.</td></tr>`;
+        return;
+      }
+
+      payments.forEach(payment => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${payment.date}</td>
+          <td>${payment.user}</td>
+          <td>₱${payment.amount.toLocaleString()}</td>
+          <td>
+            <span class="badge ${payment.status === 'Completed' ? 'bg-success' : 'bg-warning text-dark'}">${payment.status}</span>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // === Compute Total Monthly Revenue ===
+    function computeMonthlyRevenue(payments) {
+      const total = payments.reduce((sum, p) => sum + (p.status === 'Completed' ? p.amount : 0), 0);
+      document.getElementById("monthlyRevenue").textContent = "₱" + total.toLocaleString();
+    }
+
+    // === Render Charts ===
+    function renderCharts(revenueTrends, roomData) {
+      const ctx1 = document.getElementById("revenueChart");
+      new Chart(ctx1, {
+        type: "line",
+        data: {
+          labels: revenueTrends.map(r => r.month),
+          datasets: [{
+            label: "Revenue (₱)",
+            data: revenueTrends.map(r => r.amount),
+            borderColor: "#BA3D03",
+            backgroundColor: "rgba(228,133,35,0.2)",
+            borderWidth: 3,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      const ctx2 = document.getElementById("roomChart");
+      new Chart(ctx2, {
+        type: "bar",
+        data: {
+          labels: roomData.map(r => r.room),
+          datasets: [{
+            label: "Bookings",
+            data: roomData.map(r => r.count),
+            backgroundColor: "#E48523"
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+
+    // === Download Reports ===
+    document.getElementById("downloadPDF").addEventListener("click", () => {
+      alert("PDF download feature will be connected to backend.");
+    });
+    document.getElementById("downloadExcel").addEventListener("click", () => {
+      alert("Excel export feature will be connected to backend.");
+    });
+
+    // === Mock API Simulation (for demo) ===
+    if (window.location.hostname === "localhost" || window.location.hostname === "") {
+      window.fetch = async () => ({
+        json: async () => ({
+          payments: [
+            { date: "2025-10-01", user: "John Dela Cruz", amount: 4200, status: "Completed" },
+            { date: "2025-10-02", user: "Maria Santos", amount: 3800, status: "Completed" },
+            { date: "2025-10-03", user: "Carlo Reyes", amount: 2500, status: "Pending" },
+            { date: "2025-10-04", user: "Ella Gomez", amount: 5200, status: "Completed" }
+          ],
+          revenueTrends: [
+            { month: "June", amount: 68200 },
+            { month: "July", amount: 73400 },
+            { month: "August", amount: 79000 },
+            { month: "September", amount: 85600 },
+            { month: "October", amount: 92000 }
+          ],
+          mostBookedRooms: [
+            { room: "Deluxe Room", count: 34 },
+            { room: "Suite", count: 25 },
+            { room: "Standard Room", count: 20 },
+            { room: "Family Room", count: 15 }
+          ]
+        })
+      });
+    }
+
+    // === Refresh Button ===
+    document.getElementById("refreshBtn").addEventListener("click", async () => {
+      const btn = document.getElementById("refreshBtn");
+      btn.classList.add("disabled");
+      btn.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Refreshing...';
+      await fetchPaymentData();
+      setTimeout(() => {
+        btn.classList.remove("disabled");
+        btn.innerHTML = '<i class="bi bi-arrow-clockwise me-2"></i>Refresh Data';
+      }, 1000);
+    });
+
+    // === Initial Load ===
+    fetchPaymentData();
+  </script>
+
+  <style>
+    .spin {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+</body>
+</html>

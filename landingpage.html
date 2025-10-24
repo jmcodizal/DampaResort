@@ -1,328 +1,802 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Page metadata -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DAMPA sa Tabing Dagat</title>
 
-  <!-- Custom stylesheet -->
-  <link rel="stylesheet" href="landingpage.css">
+  <!-- Bootstrap 5 (CSS only) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head> 
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- ============ Embedded CSS (from user) ============ -->
+  <style>
+     /* ============================
+       Global Reset & Body
+    ============================ */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background:#f9f9f9;
+      /* create space for the fixed header so anchor jumps don't hide content */
+      padding-top:72px;
+    }
+
+    /* ============================
+       Header / Navbar
+    ============================ */
+    .topnav {
+      display:flex; justify-content:space-between; align-items:center;
+      background:#E8C580; padding:10px 20px; position:fixed; top:0; left:0; right:0;
+      width:100%; z-index:1000;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    }
+    .topnav .logo img { height:40px; }
+    .nav-links { display:flex; gap:20px; align-items:center; }
+    .nav-links a { text-decoration:none; color:#3D1203; font-weight:600; font-size:14px; transition:0.3s; }
+    .nav-links a:hover { color:#BA3D03; }
+
+    .right-actions { display:flex; align-items:center; gap:15px; }
+    .right-actions a { text-decoration:none; color:#3D1203; font-size:14px; transition:0.3s; }
+    .right-actions a:hover { color:#E48523; }
+
+    .search-box { display:flex; align-items:center; border:2px solid #C5A07E; padding:5px 10px; border-radius:20px; background:#fff; }
+    .search-box input { border:none; outline:none; font-size:14px; color:#3D1203; }
+    .search-box i { color:#7f492b; }
+
+    .icon { display:none; font-size:22px; color:#3D1203; cursor:pointer; }
+
+    /* Dropdown */
+    .dropdown { position:relative; }
+    .dropdown-content { display:none; position:absolute; top:100%; left:0; background:#fff; border:1px solid #C5A07E; border-radius:6px; padding:10px 0; box-shadow:0 4px 8px rgba(0,0,0,0.1); white-space:nowrap; z-index:1000; }
+    .dropdown-content a { display:block; padding:10px 15px; color:#3D1203; text-decoration:none; transition:0.3s; }
+    .dropdown-content a:hover { background:#E8C580; color:#3D1203; }
+    .dropdown:hover .dropdown-content { display:block; }
+
+    /* Responsive Navbar */
+    @media screen and (max-width:768px){
+      .nav-links, .right-actions { display:none; }
+      .nav-links { flex-direction:column; background:#3D1203; position:absolute; top:60px; left:0; width:100%; padding:15px; }
+      .nav-links a { color:#fff; padding:10px 0; }
+      .nav-links.show { display:flex; }
+      .icon { display:block; }
+      .topnav { justify-content:space-between; }
+      .topnav .logo { position:absolute; left:50%; transform:translateX(-50%); }
+    }
+
+    /* ============================
+       Hero Section
+    ============================ */
+    .hero { min-height:calc(100vh - 72px); background:url('images/beach-view.jpg') center/cover no-repeat; display:flex; justify-content:center; align-items:center; color:#fff; text-align:center; position:relative; padding:32px 18px; }
+    .hero::after { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(61,18,3,0.5); }
+    .hero-content { position:relative; z-index:1; max-width:980px; padding:0 18px; }
+    .hero-content h1 { font-size:3rem; margin-bottom:15px; text-shadow:2px 2px 6px rgba(0,0,0,0.6); }
+    .hero-content p { font-size:1.2rem; color:#E8C580; text-shadow:1px 1px 4px rgba(0,0,0,0.6); }
+
+    .book-now { background:#7A1C1C; color:#fff; padding:10px 24px; border:none; border-radius:4px; font-weight:bold; text-transform:uppercase; cursor:pointer; transition:0.3s; }
+    .book-now:hover { background:#5E1414; transform:scale(1.05); }
+
+    /* ============================
+       Sections & Typography
+    ============================ */
+    section { padding:4rem 1.5rem; }
+    h3 { color:#BA3D03; font-weight:bold; margin-bottom:10px; }
+    p { color:#3D1203; }
+
+    .container { max-width:1400px; margin:0 auto; padding:0 16px; }
+    /* Gallery: force 5 columns on large screens, then step down responsively */
+.gallery-grid {
+  display: grid;
+  gap: 18px;
+  /* 5 equal columns when there's enough space */
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch; /* ✅ makes all grid items equal height */
+}
+
+/* fallbacks/responsive */
+@media (max-width:1300px) {
+  .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width:1100px) {
+  .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width:760px) {
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width:420px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+
+/* Equal-height room cards */
+.room-card, .featured-card {
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  transition:0.3s;
+  display: flex;             /* ✅ allows internal layout control */
+  flex-direction: column;    /* stack image + content vertically */
+  height: 100%;              /* ✅ fills full grid cell height */
+}
+
+/* consistent image height */
+.room-card img, .featured-card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+}
+
+/* make the content fill remaining space */
+.room-card .body, .featured-card .content {
+  padding:14px;
+  flex-grow: 1;              /* ✅ expands content evenly */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.price-badge {
+  background:#E48523;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:700;
+}
+
+/* ============================
+   Amenities Grid (3 per column)
+============================ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  justify-items: center;
+  text-align: center;
+}
+
+/* each amenity item */
+.why-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  width: 100%;
+  max-width: 350px;
+}
+
+.why-item:hover {
+  transform: translateY(-4px);
+}
+
+/* icons — give same size and style */
+.why-item i {
+  font-size: 60px;
+  color: #E48523;
+  width: 100px;
+  height: 100px;
+  line-height: 120px;
+  border-radius: 12px;
+  background: #fff6ec;
+  box-shadow: inset 0 0 8px rgba(228,133,35,0.2);
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* headings & text */
+.why-item h4 {
+  font-weight: bold;
+  color: #BA3D03;
+  margin-bottom: 8px;
+}
+
+.why-item p {
+  color: #3D1203;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* responsive */
+@media (max-width: 992px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+    /* Login modal */
+    .modal { display:none; position:fixed; z-index:9999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; }
+    .modal .modal-content { background:transparent; border-radius:10px; max-width:450px; width:100%; padding:20px; position:relative; }
+    .close { position:absolute; top:10px; right:15px; font-size:28px; font-weight:bold; color:#3D1203; cursor:pointer; }
+    .login { background:#E8C580; padding:30px 25px; border-radius:12px; border:2px solid #C5A07E; text-align:left; box-shadow:0 4px 15px rgba(0,0,0,0.15); }
+
+    .form-group { margin-bottom:15px; display:flex; flex-direction:column; }
+    input[type=text], input[type=password] { padding:10px 12px; border:2px solid #C5A07E; border-radius:6px; width:100%; font-size:14px; }
+    input:focus { outline:none; border-color:#E48523; box-shadow:0 0 6px rgba(228,133,35,0.4); }
+
+    .password-container { position:relative; }
+    .password-container input { padding-right:40px; }
+    .password-container i { position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:18px; color:#7f492b; }
+
+    /* Buttons inside modal / anywhere */
+    .login button[type="submit"], button.book-now {
+      display:inline-block;
+      text-decoration:none;
+      border:0;
+      cursor:pointer;
+    }
+
+    /* Responsive */
+    @media(max-width:576px){
+      .hero-content h1{font-size:2rem;}
+      .hero{min-height:calc(70vh - 72px);}
+    }
+
+    /* footer styles — replace previous footer rules with this */
+footer {
+  background:#32140b;               /* deep brown */
+  color:#f2e6da;                    /* soft off-white for copy */
+  padding:50px 20px 28px;
+  border-top:0;
+  font-size:15px;
+}
+
+.footer-grid {
+  max-width:1200px;
+  margin:0 auto 18px;
+  display:grid;
+  grid-template-columns: 260px 1fr 1fr 180px;
+  gap:28px 40px;
+  align-items:start;
+}
+
+/* left column (logo + description) */
+.footer-grid > div:first-child img {
+  display:block;
+  width:72px;
+  height:auto;
+  margin-bottom:12px;
+  filter:brightness(1.05);
+}
+.footer-grid > div:first-child p {
+  color:#f3e7d4;
+  line-height:1.6;
+  max-width:220px;
+}
+
+/* headings (gold) */
+.footer-grid h5 {
+  color:#d7a05a;         /* gold-ish */
+  margin-bottom:12px;
+  font-weight:700;
+  font-size:15px;
+}
+
+/* links and lists */
+.footer-grid ul { list-style:none; padding:0; margin:0; }
+.footer-grid li { margin-bottom:10px; }
+.footer-grid a {
+  color:#f6eede;
+  text-decoration:none;
+  opacity:0.95;
+  transition:opacity .15s, transform .15s;
+}
+.footer-grid a:hover { opacity:1; transform:translateX(4px); color:#fff; }
+
+/* social icons */
+.footer-grid .socials a {
+  display:inline-block;
+  margin-right:10px;
+  width:36px;
+  height:36px;
+  line-height:36px;
+  text-align:center;
+  border-radius:50%;
+  background:rgba(255,255,255,0.06);
+  color:#fff;
+  transition:background .15s, transform .15s;
+}
+.footer-grid .socials a:hover { background:#d7a05a; color:#2b140b; transform:translateY(-3px); }
+
+/* thin gold divider line */
+.footer-divider {
+  max-width:1200px;
+  margin:0 auto;
+  height:1px;
+  background:linear-gradient(90deg, rgba(215,160,90,0) 0%, rgba(215,160,90,1) 8%, rgba(215,160,90,1) 92%, rgba(215,160,90,0) 100%);
+  opacity:0.9;
+}
+
+/* bottom copyright */
+.footer-bottom {
+  color:#e7d9c6;
+  text-align:center;
+  padding-top:16px;
+  font-size:13px;
+  max-width:1200px;
+  margin:12px auto 0;
+}
+
+/* responsive adjustments */
+@media (max-width:992px) {
+  .footer-grid { grid-template-columns:1fr 1fr; gap:18px; }
+  .footer-grid > div:first-child p { max-width:none; }
+}
+@media (max-width:600px) {
+  .footer-grid { grid-template-columns:1fr; text-align:center; }
+  .footer-grid .socials { justify-content:center; display:flex; gap:10px; margin-top:8px; }
+  .footer-grid h5 { text-align:center; }
+}
+
+  </style>
+</head>
 <body>
 
   <!-- HEADER / NAVBAR -->
-  <header class="topnav">
-    <!-- Mobile menu icon -->
-    <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-      <i class="fa fa-bars"></i>
-    </a>
+  <header class="topnav" role="banner">
+    <div class="logo" aria-hidden="false">
+      <a href="#home"><img src="images/Dampa Logo.png" alt="DAMPA sa Tabing Dagat logo"></a>
+    </div>
 
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <img src="images/Dampa Logo.png" alt="Dampa Resort" />
-    </a>
+    <nav class="nav-links" id="navLinks" role="navigation" aria-label="Primary Navigation">
+      <a href="#home" onclick="scrollToSection('home')">Home</a>
 
-    <!-- Navigation links -->
-    <nav class="nav-links" id="navLinks">
-      <a href="landingpage.html">Home</a>
-
-      <!-- Dropdown: Rooms -->
       <div class="dropdown">
-        <a href="rooms.html">Rooms</a>
-        <div class="dropdown-content">
-          <a href="#">Room 1</a>
-          <a href="#">Room 2</a>
-          <a href="#">Room 3</a>
-          <a href="#">Couple Room</a>
-          <a href="#">Big Room</a>
+        <a href="#rooms" onclick="scrollToSection('rooms')">Rooms</a>
+        <div class="dropdown-content" role="menu" aria-label="Rooms submenu">
+          <a href="#room1">Room 1</a>
+          <a href="#room2">Room 2</a>
+          <a href="#room3">Room 3</a>
+          <a href="#room4">Couple Room</a>
+          <a href="#room5">Big Room</a>
         </div>
       </div>
 
-      <!-- Dropdown: Amenities -->
-      <div class="dropdown">
-        <a href="#">Ammenities</a>
-        <div class="dropdown-content">
-          <a href="#">Open Cottages</a>
-          <a href="#">Kitchen & Grill</a>
-          <a href="#">Bonfire Area</a>
-          <a href="#">Tent Pitching</a>
-          <a href="#">Generator Backup</a>
-        </div>
-      </div>
-
-      <!-- Dropdown: Gallery -->
-      <div class="dropdown">
-        <a href="#">Gallery</a>
-        <div class="dropdown-content">
-          <a href="#">Rooms</a>
-          <a href="#">Cottages</a>
-          <a href="#">Beachfront</a>
-          <a href="#">Events</a>
-        </div>
-      </div>
-
-      <!-- Dropdown: Rates & Packages -->
-      <div class="dropdown">
-        <a href="#">Rates & Packages</a>
-        <div class="dropdown-content">
-          <a href="#">Room Rates</a>
-          <a href="#">Inclusions</a>
-          <a href="#">Exclusions</a>
-          <a href="#">Family / Barkada Packages</a>
-        </div>
-      </div>
-
-      <!-- Dropdown: Events -->
-      <div class="dropdown">
-        <a href="#">Events</a>
-        <div class="dropdown-content">
-          <a href="#">Family Gatherings</a>
-          <a href="#">Team Building</a>
-          <a href="#">Birthday Celebrations</a>
-          <a href="#">Bonfire Nights</a>
-        </div>
-      </div>
-
-      <!-- Simple link -->
-      <a href="#">About</a>
-
-      <!-- Dropdown: Contact -->
-      <div class="dropdown">
-        <a href="#">Contact</a>
-        <div class="dropdown-content">
-          <a href="#">📍 Location</a>
-          <a href="#">📱 Call / Text</a>
-          <a href="#">📩 Messenger / FB Page</a>
-          <a href="#">Reservation Form</a>
-        </div>
-      </div>
+      <a href="#about" onclick="scrollToSection('about')">About</a>
+      <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+      <a href="javascript:void(0);" onclick="openLogin()">Log In</a>
+      <a href="signup.html">Sign Up</a>
     </nav>
 
-    <!-- Right-side actions: login, signup, search -->
     <div class="right-actions">
-      <a href="javascript:void(0);" onclick="openLogin()">Log In</a>
-      <span>|</span>
-      <a href="signup.html">Create Account</a>
-      <a href="#"><i class="fa fa-heart"></i> Favorites</a>
-      <div class="search-box">
-        <input type="text" placeholder="Search Dampa Resort...">
-        <i class="fa fa-search"></i>
+      <div class="search-box d-none d-md-flex" role="search" aria-hidden="true">
+        <input type="text" placeholder="Search..."><i class="fa fa-search" aria-hidden="true"></i>
       </div>
-    </div>
 
-    <!-- Search icon for mobile -->
-    <a href="#" class="search-icon"><i class="fa fa-search"></i></a>
+      <span class="icon" onclick="toggleMenu()" aria-hidden="false"><i class="fa fa-bars"></i></span>
+    </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Dampa Resort</h1>
-      <p>Your dream vacation starts here</p><br>
-      <button class="book-now" onclick="window.location.href='rooms.html'">Book Now</button>
-    </div>
-  </section>
-
-  <!-- FEATURED EXPERIENCES -->
-  <section class="featured">
-    <h3>Featured Experiences</h3>
-    <p>Discover the best of Dampa Resort</p>
-    <div class="featured-grid">
-      <!-- Card 1 -->
-      <div class="featured-card">
-        <img src="images/r1.jpg" alt="Luxury Rooms">
-        <div class="content">
-          <h4>Luxury Rooms</h4>
-          <p>Stay in beautifully designed rooms with modern amenities and scenic views.</p>
-          <a href="rooms.html">Explore Rooms →</a>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="featured-card">
-        <img src="images/r2.jpg" alt="Infinity Pool">
-        <div class="content">
-          <h4>Infinity Pool</h4>
-          <p>Relax in our stunning infinity pool overlooking the lush landscapes.</p>
-          <a href="#">Explore Pool →</a>
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="featured-card">
-        <img src="images/r3.jpg" alt="Fine Dining">
-        <div class="content">
-          <h4>Fine Dining</h4>
-          <p>Experience world-class cuisines crafted by our expert chefs.</p>
-          <a href="#">Explore Dining →</a>
-        </div>
+  <!-- HERO -->
+  <section id="home" class="hero" aria-label="Hero">
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Summer is waving — DAMPA sa Tabing Dagat</h1>
+      <p>Very Affordable Staycation — Newly Renovated Transient Houses. Beachfront • Family & Barkada friendly</p>
+      <div style="margin-top:18px;">
+        <button class="book-now" onclick="openLogin()">Book Now</button>
       </div>
     </div>
   </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="why">
-    <h3>Why Choose Dampa Resort</h3>
-    <p>Experience relaxation, comfort, and adventure in one destination</p>
-    <div class="why-grid">
-      <div class="why-item">
-        <i class="fas fa-bed"></i>
-        <h4>Cozy Accommodations</h4>
-        <p>Modern rooms and villas designed for ultimate relaxation.</p>
+  <!-- ABOUT -->
+  <section id="about" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>About DAMPA sa Tabing Dagat</h3>
+        <p style="color:#3D1203; max-width:900px; margin:0 auto;">Reserve now to experience an outing and stay at our newly renovated transient houses — perfect for swimming, relaxation, and budget-friendly staycations.</p>
       </div>
-      <div class="why-item">
-        <i class="fas fa-utensils"></i>
-        <h4>Exquisite Dining</h4>
-        <p>Enjoy local and international delicacies with fresh ingredients.</p>
-      </div>
-      <div class="why-item">
-        <i class="fas fa-water"></i>
-        <h4>Resort Amenities</h4>
-        <p>Infinity pools, spa, and leisure facilities for everyone.</p>
-      </div>
-      <div class="why-item">
-        <i class="fas fa-tree"></i>
-        <h4>Nature Escape</h4>
-        <p>Reconnect with nature amidst breathtaking views and fresh air.</p>
+
+      <div class="about-card" data-aos="fade-up">
+        <h4>Resort Overview</h4>
+        <p style="color:#3D1203;">
+          Summer is waving!! Reserve na po kayo para ma-experience ninyo po ang stay at outing dito sa aming DAMPA sa Tabing Dagat (Newly Renovated - Transient House).
+        </p>
+        <ul style="margin-left:18px; color:#3D1203;">
+          <li><strong>5 Transient Houses</strong> — Rooms #1, #2 & #3 are AC rooms (each can accommodate 15 pax sleeping capacity). Rate: ₱7,000</li>
+          <li><strong>Room 4</strong> — Couple room (2–7 pax). Rate: ₱2,500</li>
+          <li><strong>Room 5 (Big Room)</strong> — 20 pax capacity. Rate: ₱7,000</li>
+          <li>Each room includes attached open cottage, long table & chairs, CR, sink & faucet (unli water via pressure tank), free use of gas stove & stainless grill.</li>
+          <li>Generator available, sari-sari store on site, tent pitching (rental), bonfire (wood sold on site).</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- LOCATION -->
-  <section class="location">
-    <h3>Our Location</h3>
-    <p>Find us easily and start your unforgettable getaway</p>
-    <div class="map-container">
-      <!-- Embedded Google Map -->
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  <!-- ROOMS / GALLERY -->
+  <section id="rooms" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Room Gallery & Rates</h3>
+        <p style="color:#3D1203;">Click "Book Now" to reserve — you will be prompted to log in or sign up first.</p>
+      </div>
+
+      <div class="gallery-grid" role="list">
+        <!-- Room 1 -->
+        <article id="room1" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room-1.jpg" alt="Room 1">
+          <div class="body">
+            <h4>Room 1</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 15 pax. Attached open cottage, long table & chairs, CR, sink, 2 wall fans, free use of gas stove & stainless grill.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Room 2 -->
+        <article id="room2" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room-1 (3).jpg" alt="Room 2">
+          <div class="body">
+            <h4>Room 2</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 15 pax. Great for groups and family outings.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Room 3 -->
+        <article id="room3" class="room-card" data-aos="fade-up">
+          <img src="images/small-room(1).jpg" alt="Room 3">
+          <div class="body">
+            <h4>Room 3</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 15 pax. Air-conditioned comfort and seaside view.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Room 4 -->
+        <article id="room4" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room3-room.jpg" alt="Room 4 - Couple (2-7 pax)">
+          <div class="body">
+            <h4>Room 4 — Couple Room</h4>
+            <p style="color:#3D1203;">Sleeping capacity: 2–7 pax (cozy for couples or small groups).</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱2,500</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Room 5 -->
+        <article id="room5" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room1-cottage.jpg" alt="Room 5 - Big Room (20 pax)">
+          <div class="body">
+            <h4>Room 5 — Big Room</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 20 pax. Ideal for large groups and reunions.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
-    <!-- Address, Contact, Directions -->
-    <div class="location-details">
-      <div><h4>Address</h4><p>Barangay X, City Y, Philippines</p></div>
-      <div><h4>Contact</h4><p>📞 +63 912 345 6789<br>📧 info@damparesort.com</p></div>
-      <div><h4>Directions</h4><p>Just 10 minutes from the city center, near the bay area.</p></div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section id="amenities" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Amenities & Facilities</h3>
+        <p style="color:#3D1203;">Everything you need for a comfortable and fun stay — included and available on-site.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-item" data-aos="fade-up">
+          <i class="fas fa-umbrella-beach"></i>
+          <h4>Beachfront</h4>
+          <p style="color:#3D1203;">Soft sand, clean seawater, and two small kubo in front.</p>
+        </div>
+        <div class="why-item" data-aos="fade-up">
+          <i class="fas fa-house"></i>
+          <h4>Open Cottage</h4>
+          <p style="color:#3D1203;">Attached to rooms with long table & chairs.</p>
+        </div>
+        <div class="why-item" data-aos="fade-up">
+          <i class="fas fa-toilet"></i>
+          <h4>Private CR</h4>
+          <p style="color:#3D1203;">Tiled CR for each room with sink & faucet.</p>
+        </div>
+        <div class="why-item" data-aos="fade-up">
+          <i class="fas fa-utensils"></i>
+          <h4>Kitchen & Grill</h4>
+          <p style="color:#3D1203;">Free use of single-burner gas stove & stainless steel grill.</p>
+        </div>
+        <div class="why-item" data-aos="fade-up">
+          <i class="fas fa-fire"></i>
+          <h4>Bonfire</h4>
+          <p style="color:#3D1203;">Bonfire nights — wood available on site.</p>
+        </div>
+        <div class="why-item" data-aos="fade-up">
+          <i class="fas fa-bolt"></i>
+          <h4>Generator Backup</h4>
+          <p style="color:#3D1203;">Generator available during brownouts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEES -->
+  <section id="fees" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Exclusions & Additional Fees</h3>
+        <p style="color:#3D1203;">Fees paid separately by guests on arrival (not included in room rates).</p>
+      </div>
+
+      <div class="card-soft" style="margin:0 auto; max-width:900px;" data-aos="fade-up">
+        <ul style="color:#3D1203;">
+          <li><strong>Parking Fees (overnight):</strong> ₱80 (motor), ₱150 (car/van), ₱200 (jeep). Security attendant on duty.</li>
+          <li><strong>Ecological Fee (barangay):</strong> ₱20 per head (adults 8 yrs & above). Children 7 yrs & below exempt. Official receipt issued.</li>
+          <li><strong>Excess Guests:</strong> Additional ₱200 per excess person beyond agreed count (adults & kids).</li>
+          <li><strong>Down Payment / Reservation Fee:</strong> ₱1,000 (non-refundable) to reserve the slot. First to pay DP secures the date.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Customer Reviews</h3>
+        <p style="color:#3D1203;">What guests are saying about DAMPA sa Tabing Dagat</p>
+      </div>
+
+      <div class="row" style="gap:18px; display:flex; flex-wrap:wrap;">
+        <div style="flex:1 1 300px;" data-aos="fade-up">
+          <div class="room-card" style="padding:16px;">
+            <strong>Maria R.</strong>
+            <div class="stars" style="color:#E48523; margin:6px 0;">★★★★★</div>
+            <p style="color:#3D1203;">"Great place for a family outing — clean beach, plenty of space, very affordable. Will book again!"</p>
+          </div>
+        </div>
+        <div style="flex:1 1 300px;" data-aos="fade-up">
+          <div class="room-card" style="padding:16px;">
+            <strong>Jun D.</strong>
+            <div class="stars" style="color:#E48523; margin:6px 0;">★★★★☆</div>
+            <p style="color:#3D1203;">"Rooms were spacious, generator saved us during a short brownout, and the staff were friendly."</p>
+          </div>
+        </div>
+        <div style="flex:1 1 300px;" data-aos="fade-up">
+          <div class="room-card" style="padding:16px;">
+            <strong>Ana P.</strong>
+            <div class="stars" style="color:#E48523; margin:6px 0;">★★★★★</div>
+            <p style="color:#3D1203;">"Bonfire night was so fun. Great location near BSU and easy to find."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Contact & Location</h3>
+        <p style="color:#3D1203;">PM for reservations & inquiries — or contact us using the details below.</p>
+      </div>
+
+      <div class="row" style="display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:20px; align-items:start;">
+        <div data-aos="fade-up">
+          <div class="login" style="border:none; background:#fff; color:#3D1203;">
+            <h4 style="margin-top:0;">Reach Us</h4>
+            <p><strong>FB Account:</strong> <a href="https://www.facebook.com/EmmaruthPaloParis" target="_blank" rel="noopener">Emmaruth Palo Paris</a></p>
+            <p><strong>FB Page:</strong> <a href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener">DAMPA sa Tabing Dagat</a></p>
+            <p><strong>Contact Number:</strong> <a href="tel:+639459862423">0945 986 2423</a></p>
+            <p><strong>Location:</strong> Tanigue St., Brgy. Bucana, Nasugbu, Batangas (Near BSU Nasugbu)</p>
+            <p style="color:#3D1203;">PM on FB for reservations & other inquiries. Down payment of ₱1,000 required to reserve (non-refundable).</p>
+            <div style="display:flex; gap:8px;">
+              <a class="book-now" href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener" style="text-decoration:none; padding:10px 18px; border-radius:6px;">Message on FB</a>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up">
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps?q=Tanigue%20St.%20Brgy.%20Bucana%20Nasugbu%20Batangas&output=embed"
+              width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer aria-label="Site Footer">
     <div class="footer-grid">
-      <!-- Logo and description -->
       <div>
-        <img src="images/Dampa Logo.png" alt="Dampa Resort Logo">
-        <p class="text-sm">Dampa Resort offers a perfect blend of luxury, relaxation, and adventure — your ultimate getaway.</p>
+        <img src="images/Dampa Logo.png" alt="logo" style="max-width:140px;">
+        <p>DAMPA sa Tabing Dagat — Affordable staycation by the sea. Experience comfort, relaxation, and fun with your loved ones.</p>
       </div>
-      <!-- Quick Links -->
+
       <div>
         <h5>Quick Links</h5>
         <ul>
-          <li><a href="rooms.html">Book a Room</a></li>
-          <li><a href="#">Amenities</a></li>
-          <li><a href="#">Packages</a></li>
-          <li><a href="#">Events</a></li>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
-      <!-- Guest Services -->
+
       <div>
-        <h5>Guest Services</h5>
+        <h5>Contact Info</h5>
         <ul>
-          <li><a href="#">Promotions</a></li>
-          <li><a href="#">Resort Map</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
+          <li>Tanigue St., Brgy. Bucana, Nasugbu, Batangas</li>
+          <li>📞 <a href="tel:+639459862423">0945 986 2423</a></li>
+          <li>FB: <a href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener">DAMPA sa Tabing Dagat</a></li>
         </ul>
       </div>
-      <!-- Socials -->
-      <div>
+
+      <div style="display:flex; flex-direction:column; align-items:flex-end;">
         <h5>Follow Us</h5>
-        <div class="socials">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <div class="socials" aria-label="Social links">
+          <a href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
     </div>
+    
+    <div class="footer-divider" role="separator" aria-hidden="true"></div>
+
     <div class="footer-bottom">
-      © 2025 Dampa Resort. All Rights Reserved.
+      © 2025 DAMPA sa Tabing Dagat. All Rights Reserved.
     </div>
   </footer>
 
-  <!-- LOGIN MODAL -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <!-- Close button -->
-      <span class="close" onclick="closeLogin()">&times;</span>
-      <!-- Login form -->
-      <form class="login">
-        <h2 style="text-align:center; margin-bottom: 20px; color:#3D1203;">Login</h2>
+  <!-- LOGIN MODAL (kept) -->
+  <div id="loginModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="loginTitle">
+    <div class="modal-content" role="document">
+      <span class="close" onclick="closeLogin()" aria-label="Close login modal">&times;</span>
+      <form class="login" onsubmit="event.preventDefault(); alert('Logging in - connect to backend');">
+        <h2 id="loginTitle">Log In</h2>
+        <p style="color:#3D1203;">Sign in to continue your booking</p>
 
-        <!-- Email input -->
         <div class="form-group">
           <label for="username">Email</label>
-          <input type="text" id="username" placeholder="Enter your email" required>
+          <input type="text" id="username" name="username" placeholder="Enter your email" required>
         </div>
 
-        <!-- Password input with toggle -->
         <div class="form-group password-container">
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required>
-          <i class="fas fa-eye" id="togglePassword"></i>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <i class="fas fa-eye" id="togglePassword" aria-hidden="true"></i>
         </div>
 
-        <!-- Forgot password link -->
-        <div class="forgot-password">
-          <a href="#">Forgot Password?</a>
-        </div>
-        <br>
+        <div class="forgot-password"><a href="#">Forgot Password?</a></div>
 
-        <!-- Submit button -->
-        <div style="text-align:center;">
-          <button type="submit">Log In</button>
+        <div style="margin-top:12px;">
+          <button type="submit" class="book-now">Log In</button>
         </div>
 
-        <!-- Signup link -->
-        <p class="signup-link" style="text-align:center; margin-top: 15px; font-size: 0.9rem; color:#3D1203;">
-          Don’t have an account? 
-          <a href="signup.html" style="color:#000; text-decoration: underline;">Sign up now</a>
+        <p style="text-align:center; margin-top:12px; color:#3D1203;">
+          Don’t have an account? <a href="signup.html">Sign up now</a>
         </p>
       </form>
     </div>
   </div>
 
-  <!-- JAVASCRIPT -->
+  <!-- OPTIONAL door modal (kept) -->
+  <div id="doorModal" class="door-modal" style="display:none;"></div>
+
+  <!-- Scripts: AOS, Bootstrap JS, and custom JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    // Toggle menu for mobile
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("show");
+    // Initialize AOS
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 80
+    });
+  </script>
+
+  <!-- Bootstrap bundle (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Mobile toggle
+    function toggleMenu(){
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('show');
     }
 
-    // Open & close login modal
-    function openLogin() {
-      document.getElementById("loginModal").style.display = "flex";
+    // Sticky header small enhancement: add shadow on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header.topnav');
+      if(window.scrollY > 8) header.style.boxShadow = '0 10px 30px rgba(61,18,3,0.18)';
+      else header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+    });
+
+    // Login modal
+    function openLogin(){
+      const modal = document.getElementById('loginModal');
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+      // focus management
+      setTimeout(()=> {
+        const u = document.getElementById('username');
+        if(u) u.focus();
+      }, 80);
     }
-    function closeLogin() {
-      document.getElementById("loginModal").style.display = "none";
+    function closeLogin(){
+      const modal = document.getElementById('loginModal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
     }
 
-    // Close modal if user clicks outside of it
-    window.onclick = function(event) {
-      const modal = document.getElementById("loginModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
+    // Close modal clicking outside
+    window.addEventListener('click', function(e){
+      const modal = document.getElementById('loginModal');
+      if(e.target === modal) closeLogin();
+    });
+
+    // Toggle password visibility
+    document.addEventListener('DOMContentLoaded', function(){
+      const toggle = document.getElementById('togglePassword');
+      if(toggle){
+        toggle.addEventListener('click', function(){
+          const p = document.getElementById('password');
+          p.type = p.type === 'password' ? 'text' : 'password';
+          this.classList.toggle('fa-eye-slash');
+        });
       }
+
+      // Make all "Book Now" buttons open the login modal (anchors with href will still work)
+      document.querySelectorAll('.book-now').forEach(btn=>{
+        btn.addEventListener('click', function(e){
+          // allow actual links to proceed
+          if(this.tagName.toLowerCase() === 'a' && this.getAttribute('href')) return;
+          // prevent default for button elements (they're already buttons)
+          if(this.tagName.toLowerCase() === 'button') {
+            e.preventDefault();
+            openLogin();
+          }
+        });
+      });
+    });
+
+    // Smooth scroll helper (for internal nav)
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+      // close mobile nav if open
+      const nav = document.getElementById('navLinks');
+      if(nav.classList.contains('show')) nav.classList.remove('show');
     }
 
-    // Show/hide password toggle
-    const togglePassword = document.getElementById("togglePassword");
-    const passwordField = document.getElementById("password");
-    togglePassword.onclick = () => {
-      const type = passwordField.type === "password" ? "text" : "password";
-      passwordField.type = type;
-      togglePassword.classList.toggle("fa-eye-slash");
-    }
+    // Accessibility: ESC to close modal
+    window.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        closeLogin();
+      }
+    });
   </script>
 </body>
 </html>
