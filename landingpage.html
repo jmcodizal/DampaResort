@@ -1049,8 +1049,6 @@
   z-index: 1;
 }
 
-
-
     @media (max-width:992px) {
       .footer-grid { grid-template-columns:1fr 1fr; 
         gap:18px; 
@@ -1064,6 +1062,76 @@
       .footer-grid .socials { justify-content:center; display:flex; gap:10px; margin-top:8px; }
       .footer-grid h5 { text-align:center; }
     }
+
+   
+.role-modal {
+  background: #E8C580;
+  border: none;
+  color: #3D1203;
+  border-radius: 15px !important; /* force override Bootstrap default */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+  overflow: hidden; /* keep inner content neat */
+}
+
+.role-modal .modal-header {
+  background: #BA3D03;
+  color: #fff;
+  border: none;
+  border-top-left-radius: 15px !important;
+  border-top-right-radius: 15px !important;
+}
+
+.role-modal .modal-body {
+  background-color: #E8C580;
+  padding: 30px;
+  border-bottom-left-radius: 15px !important; /* ensures visible rounded bottom corners */
+  border-bottom-right-radius: 15px !important;
+}
+
+.role-modal .btn-close {
+  filter: invert(1);
+}
+
+/* Role card container */
+.role-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+/* Role cards */
+.role-card {
+  background: #C5A07E;
+  color: #3D1203;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 0 0 100px;
+  height: 130px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid #BA3D03;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.role-card:hover {
+  background: #E48523;
+  color: #fff;
+  transform: scale(1.05);
+  border-color: #3D1203;
+  box-shadow: 0 4px 10px rgba(61, 18, 3, 0.3);
+}
+
+.role-card h6 {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+
 
   </style>
 </head>
@@ -1110,8 +1178,8 @@
 
     <a href="#about"><i class="fa fa-info-circle"></i> About</a>
     <a href="#contact"><i class="fa fa-phone"></i> Contact</a>
-    <a href="javascript:void(0);" onclick="openLogin()"><i class="fa fa-sign-in-alt"></i> Log In</a>
-    <a href="signup.html"><i class="fa fa-user-plus"></i> Sign Up</a>
+    <a href="javascript:void(0);" onclick="openRoleModal('login')"><i class="fa fa-sign-in-alt"></i> Log In</a>
+    <a href="javascript:void(0);" onclick="openRoleModal('signup')"><i class="fa fa-user-plus"></i> Sign Up</a>
   </nav>
 
   <!-- Desktop Search Box -->
@@ -1165,6 +1233,67 @@
     </div>
   </div>
 </section>
+<!-- ===== ROLE SELECTION MODAL ===== -->
+<div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content role-modal">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="roleModalLabel">Continue As</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <p>Please choose your role to continue</p>
+
+        <div class="role-cards-container">
+          <div class="role-card" onclick="goToRole('admin')">
+            <i class="fa-solid fa-user-tie fa-3x"></i>
+            <h6>Admin</h6>
+          </div>
+
+          <div class="role-card" onclick="goToRole('staff')">
+            <i class="fa-solid fa-user-gear fa-3x"></i>
+            <h6>Staff</h6>
+          </div>
+
+          <div class="role-card" onclick="goToRole('customer')">
+            <i class="fa-solid fa-user fa-3x"></i>
+            <h6>Customer</h6>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" 
+                style="background:#BA3D03; border:none;">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
   <!-- ROOMS / GALLERY -->
@@ -1569,6 +1698,25 @@
   function scrollToSection(id) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
+  let actionType = ''; 
+
+function openRoleModal(type) {
+  actionType = type;
+  const roleModal = new bootstrap.Modal(document.getElementById('roleModal'));
+  roleModal.show();
+}
+
+function goToRole(role) {
+  if (actionType === 'login') {
+    if (role === 'admin') window.location.href = 'admin-login.html';
+    else if (role === 'staff') window.location.href = 'staff-login.html';
+    else window.location.href = 'login.html';
+  } else {
+    if (role === 'admin') window.location.href = 'admin-signup.html';
+    else if (role === 'staff') window.location.href = 'staff-signup.html';
+    else window.location.href = 'signup.html';
+  }
+}
   
   </script>
 </body>
