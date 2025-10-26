@@ -4,82 +4,317 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAMPA Resort Rooms</title>
-
-  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
-  <!-- jsPDF for PDF generation -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-  body {
-    font-family: "Inter", Arial, sans-serif;
-    background: #E8C580;
-    color: #3D1203;
-    margin: 0;
-    line-height: 1.6;
-  }
-  header {
-    background: url("images/transient-house-view-2.jpg") no-repeat center center/cover;
-    height: 220px;
-    border-radius: 0 0 20px 20px;
-    position: relative;
-    text-align: center;
-    color: #fff;
-  }
-  header::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(61,18,3,0.4);
-    border-radius: 0 0 20px 20px;
-  }
-  .filter-bar { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 10px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); border-radius: 10px; padding: 10px 15px; justify-content: center; }
-  .filter-bar label { font-weight: 600; color: #fff; }
-  .filter-bar input, .filter-bar select { border: none; border-radius: 6px; padding: 5px 8px; outline: none; }
-  .filter-bar button { background: #E48523; color: #fff; border: none; border-radius: 6px; padding: 8px 14px; font-weight: bold; transition: 0.3s; }
-  .filter-bar button:hover { background: #C04000; transform: scale(1.05); }
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      background: #E8C580;
+      color: #3D1203;
+      margin: 0;
+      line-height: 1.6;
+    }
 
-  /* ROOM CARDS */
-  .room-card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.15); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; height: 100%; }
-  .room-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.25); }
-  .room-card img { height: 160px; object-fit: cover; width: 100%; }
-  .room-details { padding: 15px; flex: 1; display: flex; flex-direction: column; }
-  .room-details h2 { color: #C04000; margin-bottom: 4px; font-size: 1.25rem; }
-  .price { color: #E48523; font-weight: bold; }
-  .add-btn { background-color: #E48523; color: #fff; border: none; border-radius: 5px; padding: 8px 10px; margin-top: 10px; transition: 0.3s; }
-  .add-btn:hover { background: #C04000; transform: scale(1.05); }
-  .room-status { position: absolute; top: 10px; right: 10px; padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; color: #fff; }
-  .available { background: #2ecc71; }
+    header {
+      background: url("images/transient-house-view-2.jpg") no-repeat center center / cover;
+      height: 220px;
+      border-radius: 0 0 20px 20px;
+      position: relative;
+      text-align: center;
+      color: #fff;
+    }
 
-  /* SUMMARY */
-  .summary { position: sticky; top: 20px; background: #F2D19B; border-radius: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.2); padding: 20px; height: 500px; display: flex; flex-direction: column; width: 450px; }
-  .room-list-wrapper { flex-grow: 1; max-height: 200px; overflow-y: auto; border: 1px solid #ccc; background: #fdf5e6; border-radius: 6px; padding: 6px; }
-  #room-list { list-style: none; padding: 0; margin: 0; }
-  #room-list li { display: flex; justify-content: space-between; align-items: center; background: #fff; margin: 6px 0; padding: 10px 14px; border-radius: 8px; }
-  #room-list li span.room-label { flex: 1; text-align: left; }
-  #room-list li span.room-price { margin-left: 12px; font-weight: 700; color: #C04000; }
-  .remove-room { background: none; border: none; color: #ff4d4d; font-size: 20px; cursor: pointer; }
-  .book-btn { width: 100%; background: #C04000; color: #fff; border: none; border-radius: 8px; font-weight: bold; padding: 12px; transition: 0.3s; }
-  .book-btn:hover { background: #3D1203; transform: scale(1.03); }
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(61, 18, 3, 0.4);
+      border-radius: 0 0 20px 20px;
+    }
 
-  /* MODAL */
-  .modal-custom { display: none; position: fixed; inset: 0; background-color: rgba(61,18,3,0.6); backdrop-filter: blur(4px); z-index: 1000; overflow-y: auto; }
-  .modal-content-custom { background: linear-gradient(145deg, #E8C580 20%, #E48523 90%); margin: 8% auto; padding: 30px; border-radius: 18px; max-width: 600px; color: #3D1203; }
-  .details-link { color: #E48523; font-weight: 600; text-decoration: none; margin-top: auto; }
-  .details-link:hover { color: #C04000; }
-  .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(61, 18, 3, 0.6); backdrop-filter: blur(4px); }
-  .modal-content { background: linear-gradient(145deg, #E8C580 20%, #E48523 90%); margin: 8% auto; padding: 30px; border-radius: 18px; width: 80%; max-width: 600px; color: #3D1203; box-shadow: 0 8px 30px rgba(0,0,0,0.25); font-family: "Inter", sans-serif; text-align: left; }
-  .modal-content h2 { font-family: "Playfair Display", serif; font-size: 26px; margin-bottom: 15px; color: #BA3D03; border-bottom: 2px solid rgba(61,18,3,0.2); padding-bottom: 10px; }
-  .modal-content p { line-height: 1.6; font-size: 16px; color: #3D1203; background-color: rgba(255, 255, 255, 0.5); padding: 12px 15px; border-radius: 10px; margin-top: 12px; white-space: pre-line; }
-  .close { color: #C5A07E; float: right; font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-  .close:hover, .close:focus { color: #3D1203; text-decoration: none; transform: scale(1.1); }
-  </style>
+    .filter-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 10px;
+      padding: 10px 15px;
+      justify-content: center;
+    }
+
+    .filter-bar label {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+      border: none;
+      border-radius: 6px;
+      padding: 5px 8px;
+      outline: none;
+    }
+
+    .filter-bar button {
+      background: #E48523;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .filter-bar button:hover {
+      background: #C04000;
+      transform: scale(1.05);
+    }
+
+    .room-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .room-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .room-card img {
+      height: 160px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .room-details {
+      padding: 15px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .room-details h2 {
+      color: #C04000;
+      margin-bottom: 4px;
+      font-size: 1.25rem;
+    }
+
+    .price {
+      color: #E48523;
+      font-weight: bold;
+    }
+
+    .add-btn {
+      background-color: #E48523;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 10px;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .add-btn:hover {
+      background: #C04000;
+      transform: scale(1.05);
+    }
+
+    .room-status {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+
+    .available {
+      background: #2ecc71;
+    }
+
+
+    .summary {
+      position: sticky;
+      top: 20px;
+      background: #F2D19B;
+      border-radius: 14px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      width: 450px;
+    }
+
+    .room-list-wrapper {
+      flex-grow: 1;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      background: #fdf5e6;
+      border-radius: 6px;
+      padding: 6px;
+    }
+
+    #room-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #room-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      margin: 6px 0;
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
+
+    #room-list li span.room-label {
+      flex: 1;
+      text-align: left;
+    }
+
+    #room-list li span.room-price {
+      margin-left: 12px;
+      font-weight: 700;
+      color: #C04000;
+    }
+
+    .remove-room {
+      background: none;
+      border: none;
+      color: #ff4d4d;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .book-btn {
+      width: 100%;
+      background: #C04000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      padding: 12px;
+      transition: 0.3s;
+    }
+
+    .book-btn:hover {
+      background: #3D1203;
+      transform: scale(1.03);
+    }
+
+    .modal-custom {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(61, 18, 3, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .modal-content-custom {
+      background: linear-gradient(145deg, #E8C580 20%, #E48523 90%);
+      margin: 8% auto;
+      padding: 30px;
+      border-radius: 18px;
+      max-width: 600px;
+      color: #3D1203;
+    }
+
+    .details-link {
+      color: #E48523;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: auto;
+    }
+
+    .details-link:hover {
+      color: #C04000;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(61, 18, 3, 0.6);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, #E8C580 20%, #E48523 90%);
+      margin: 8% auto;
+      padding: 30px;
+      border-radius: 18px;
+      width: 80%;
+      max-width: 600px;
+      color: #3D1203;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      font-family: "Inter", sans-serif;
+      text-align: left;
+    }
+
+    .modal-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #BA3D03;
+      border-bottom: 2px solid rgba(61, 18, 3, 0.2);
+      padding-bottom: 10px;
+    }
+
+    .modal-content p {
+      line-height: 1.6;
+      font-size: 16px;
+      color: #3D1203;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin-top: 12px;
+      white-space: pre-line;
+    }
+
+    .close {
+      color: #C5A07E;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #3D1203;
+      text-decoration: none;
+      transform: scale(1.1);
+    }
+
+</style>
 </head>
-
 <body>
-  <!-- HEADER -->
   <header class="d-flex flex-column justify-content-center align-items-center text-center">
     <img src="images/Dampa Logo.png" width="100" alt="DAMPA Logo" class="mb-2 position-relative z-1">
     <div class="filter-bar">
@@ -104,7 +339,6 @@
     </div>
   </header>
 
-  <!-- MAIN -->
   <main class="container my-4">
     <div class="row g-4">
       <div class="col-lg-8">
@@ -181,8 +415,6 @@
 
         </div>
       </div>
-
-      <!-- SUMMARY -->
       <div class="col-lg-4">
         <aside class="summary">
           <h3>Booking Summary</h3>
@@ -204,7 +436,6 @@
               <input type="text" class="form-control" id="summary-special-requests" optional>
             </div>
           </div>
-
           <h5 class="fw-bold">Selected Rooms</h5>
           <div class="room-list-wrapper mb-3">
             <ul id="room-list"></ul>
@@ -214,14 +445,11 @@
           </div>
           <button class="book-btn" onclick="confirmBooking()">Reserve</button>
         </aside>
-
-        <!-- Notification Box -->
         <div id="notification" style="position: fixed; bottom: 20px; right: 20px; background: #C04000; color: #fff; padding: 10px 18px; border-radius: 8px; box-shadow: 0 3px 6px rgba(0,0,0,0.2); display: none; z-index: 2000; font-weight: 600;"></div>
       </div>
     </div>
   </main>
 
-  <!-- Pre-confirm modal: choose Confirm / Edit / Cancel -->
   <div id="preConfirmModal" class="modal-custom">
     <div class="modal-content-custom text-center">
       <h2>Confirm Reservation</h2>
@@ -235,7 +463,6 @@
     </div>
   </div>
 
-  <!-- Confirmation (after actual confirm) -->
   <div id="confirmationModal" class="modal-custom">
     <div class="modal-content-custom text-center">
       <h2>Booking Confirmed!</h2>
@@ -247,7 +474,6 @@
     </div>
   </div>
 
-  <!-- Receipt / Booking Summary Modal (only Download & Close) -->
   <div id="receiptModal" class="modal-custom">
     <div class="modal-content-custom text-center">
       <h2>Booking Receipt / Summary</h2>
@@ -259,7 +485,6 @@
     </div>
   </div>
 
-  <!-- ROOM DETAILS MODAL -->
   <div id="roomModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeRoomModal()">&times;</span>
@@ -269,16 +494,14 @@
   </div>
 
 <script>
-  // --- Helpers & state ---
-  const { jsPDF } = window.jspdf || {}; // jsPDF loaded from CDN
+  const { jsPDF } = window.jspdf || {}; 
 
-  // Add room: now store price in dataset so PDF/table can read it reliably
   function addRoom(name, price) {
     const list = document.getElementById("room-list");
     if ([...list.children].some(li => li.dataset.roomName === name)) return;
     const li = document.createElement("li");
     li.dataset.roomName = name;
-    li.dataset.price = price; // store numeric price
+    li.dataset.price = price;
     li.innerHTML = `<span class="room-label">${name}</span><span class="room-price">₱${Number(price).toLocaleString()}</span><button class='remove-room'>&times;</button>`;
     li.querySelector(".remove-room").onclick = () => { li.remove(); updateTotal(); showNotification(`❌ Removed ${name}`); };
     list.appendChild(li);
@@ -286,7 +509,6 @@
     showNotification(`✅ ${name} added to booking summary.`);
   }
 
-  // Use dataset.price to compute totals (robust)
   function updateTotal() {
     let total = 0;
     document.querySelectorAll("#room-list li").forEach(li => {
@@ -296,13 +518,11 @@
     document.getElementById("total").textContent = total.toLocaleString();
   }
 
-  // auto-fill user (example)
   const loggedInUserName = "Elmira Despo";
   window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("summary-name").value = loggedInUserName;
   });
 
-  // Filters (unchanged)
   function applyFilters() {
     const capRange = document.getElementById("filterCapacity").value;
     const priceRange = document.getElementById("filterPrice").value;
@@ -327,19 +547,16 @@
     });
   }
 
-  // --- Modal utilities ---
   function openModal(id) { document.getElementById(id).style.display = 'block'; }
   function closeModalById(id) { document.getElementById(id).style.display = 'none'; }
   function closeAllCustomModals() { document.querySelectorAll('.modal-custom').forEach(m => m.style.display = 'none'); }
 
-  // Click outside modal to close (works for modal & modal-custom)
   window.addEventListener('click', function(event) {
     if (event.target.classList && (event.target.classList.contains('modal') || event.target.classList.contains('modal-custom'))) {
       event.target.style.display = 'none';
     }
   });
 
-  // Notification helper
   function showNotification(message) {
     const box = document.getElementById("notification");
     box.textContent = message;
@@ -349,9 +566,6 @@
     setTimeout(() => { box.style.display = "none"; box.style.opacity = "1"; box.style.transition = "none"; }, 2500);
   }
 
-  // --- Booking flow ---
-
-  // Step 1: click Reserve -> validation -> open pre-confirm modal (Confirm/Edit/Cancel)
   function confirmBooking() {
     const name = document.getElementById("summary-name").value.trim();
     const phone = document.getElementById("summary-phone-number").value.trim();
@@ -360,7 +574,6 @@
     const checkout = document.getElementById("checkout").value.trim();
     const total = document.getElementById("total").textContent;
 
-    // validation
     if (!name || !phone || !guests || !checkin || !checkout) {
       showNotification("⚠️ Please fill in all required booking fields before confirming.");
       return;
@@ -374,35 +587,24 @@
       return;
     }
 
-    // open pre-confirm modal (user chooses Confirm/Edit/Cancel)
     openModal('preConfirmModal');
   }
 
-  // Pre-confirm actions
   function closePreConfirm() { closeModalById('preConfirmModal'); }
 
-  // User chooses to actually confirm: send to admin, show confirmation (DO NOT clear inputs here)
   function preConfirmConfirm() {
     closeModalById('preConfirmModal');
 
-    // Simulate sending notification to admin here (AJAX or backend call in real app)
     showNotification("📩 Booking confirmed and notification sent to admin.");
     openModal('confirmationModal');
-
-    // IMPORTANT: per your request, DO NOT clear inputs here — keep details visible for receipt.
   }
 
-  // User chooses Edit: just close preconfirm and return to form for edits (do not clear)
   function preConfirmEdit() {
     closeModalById('preConfirmModal');
     showNotification("✏️ You can edit your booking details now.");
     document.getElementById('summary-name').focus();
   }
 
-  // User chooses Cancel at pre-confirm:
-  // - Immediately close the preConfirm modal
-  // - Clear inputs & selections (including name)
-  // - Do NOT open receipt modal
   function preConfirmCancel() {
     closeModalById('preConfirmModal');
     clearAllInputsAndSelection();
@@ -410,14 +612,12 @@
     showNotification("❌ Booking cancelled. Inputs cleared.");
   }
 
-  // When user clicks View Receipt from confirmation modal (already confirmed)
   function showReceiptFromConfirmation() {
     closeModalById('confirmationModal');
     populateReceiptContent();
     openModal('receiptModal');
   }
 
-  // Populate receipt content (used both for confirmed & pre-confirm-cancel flow)
   function populateReceiptContent() {
     const name = document.getElementById("summary-name").value;
     const phone = document.getElementById("summary-phone-number").value;
@@ -443,21 +643,14 @@
     `;
   }
 
-  // Download PDF of receipt (this will clear inputs & selection after download)
   async function downloadReceipt() {
     try {
-      // create jsPDF in 'mm' units (default)
       const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-
-      // helper values
       const left = 14;
       let y = 14;
       const pageWidth = doc.internal.pageSize.getWidth();
       const right = pageWidth - left;
 
-      // Header: logo (if available) + title
-      // Try to include logo if image exists by drawing from DOM (optional). If not present, use text header.
-      // (For simplicity we'll use textual header and stylings.)
       doc.setFontSize(18);
       doc.setFont(undefined, 'bold');
       doc.text("DAMPA Resort", left, y);
@@ -466,7 +659,6 @@
       doc.text("Booking Receipt", right - doc.getTextWidth("Booking Receipt"), y);
       y += 8;
 
-      // booking id & date
       const bookingId = 'BKG-' + Date.now().toString().slice(-6);
       const now = new Date();
       const dateStr = now.toLocaleString();
@@ -480,7 +672,6 @@
       doc.line(left, y, right, y);
       y += 6;
 
-      // Customer details
       const name = document.getElementById("summary-name").value || '';
       const phone = document.getElementById("summary-phone-number").value || '';
       const checkin = document.getElementById("checkin").value || '';
@@ -496,7 +687,6 @@
       doc.text(`Pax: ${pax}`, left, y); y += 6;
       doc.text(`Special requests: ${special || '(none)'}`, left, y); y += 10;
 
-      // Items header (table-like)
       doc.setFont(undefined, 'bold');
       doc.setFontSize(11);
       doc.text('Item', left, y);
@@ -508,7 +698,6 @@
       doc.line(left, y, right, y);
       y += 6;
 
-      // Rooms — iterate and print rows
       let subtotal = 0;
       const rows = [];
       document.querySelectorAll("#room-list li").forEach(li => {
@@ -524,15 +713,12 @@
       } else {
         doc.setFontSize(10);
         rows.forEach(r => {
-          // wrap long room names if necessary
           const maxWidth = right - left - 60;
           const split = doc.splitTextToSize(r.name, maxWidth);
           doc.text(split, left, y);
-          // place price/amount on the same baseline (first line)
           doc.text(`₱${Number(r.price).toLocaleString()}`, right - 40, y);
           doc.text(`₱${Number(r.price).toLocaleString()}`, right, y, { align: 'right' });
           y += (split.length * 6) + 2;
-          // check for page overflow
           if (y > 277) { doc.addPage(); y = 14; }
         });
       }
@@ -542,14 +728,12 @@
       doc.line(left, y, right, y);
       y += 6;
 
-      // totals
       doc.setFont(undefined, 'bold');
       doc.text('Subtotal', left, y);
       doc.text(`₱${subtotal.toLocaleString()}`, right, y, { align: 'right' });
       y += 7;
 
-      // (you can insert taxes/discounts here — currently none)
-      const vat = 0; // change if needed
+      const vat = 0; 
       if (vat) {
         doc.setFont(undefined, 'normal');
         doc.text('VAT', left, y);
@@ -563,18 +747,15 @@
       doc.text(`₱${total.toLocaleString()}`, right, y, { align: 'right' });
       y += 10;
 
-      // Footer / notes
       doc.setFontSize(9);
       doc.setFont(undefined, 'normal');
       doc.text('Thank you for booking with DAMPA Resort. Please keep this receipt for your records.', left, y);
       y += 6;
       doc.text('Contact: +63-945-986-2423 | Address: Tanigue St. Brgy. Bucana, Nasugbu, Batangas.', left, y);
 
-      // Save PDF
       doc.save(`DAMPA_Booking_${bookingId}.pdf`);
       showNotification("💾 PDF downloaded successfully.");
 
-      // After download: close receipt and clear inputs + selected rooms (per rule)
       closeReceipt(true);
 
     } catch (err) {
@@ -582,8 +763,6 @@
       showNotification("⚠️ Error generating PDF.");
     }
   }
-
-  // Close receipt: per request, closing the receipt WILL clear inputs & selection
   function closeReceipt(clear = true) {
     closeModalById('receiptModal');
     if (clear) {
@@ -592,21 +771,15 @@
     }
   }
 
-  // Close confirmation modal (does NOT clear)
   function closeConfirmation() { closeModalById('confirmationModal'); }
 
-  // Close room modal
   function closeRoomModal() { closeModalById('roomModal'); }
 
-  // Clear function (used when downloading or closing receipt or cancel)
   function clearAllInputsAndSelection() {
-    // clear inputs (including name)
     const ids = ['summary-name','summary-phone-number','summary-number-of-guests','checkin','checkout','summary-special-requests'];
     ids.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-    // clear selected rooms
     const list = document.getElementById('room-list');
     list.innerHTML = '';
-    // reset total
     document.getElementById('total').textContent = '0';
   }
 
@@ -666,9 +839,6 @@
   }
 };
 
-// ==========================
-// Show modal with room details
-// ==========================
 function showDetails(roomId) {
   const modal = document.getElementById("roomModal");
   const modalTitle = document.getElementById("modalTitle");
@@ -680,21 +850,16 @@ function showDetails(roomId) {
   modal.style.display = "block";
 }
 
-// Close modal
 function closeModal() {
   document.getElementById("roomModal").style.display = "none";
 }
 
-// Close modal when clicking outside
 window.onclick = function(event) {
   const modal = document.getElementById("roomModal");
   if (event.target === modal) {
     modal.style.display = "none";
   }
 };
-
-  // (Optional) unused edit/cancel functions removed from UI; kept out to avoid accidental calls
-
 </script>
 </body>
 </html>
