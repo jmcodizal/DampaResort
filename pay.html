@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book — DAMPA Resort</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html,body { height:100%; margin:0; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, #E8C580 0%, #E48523 100%);
+      color: #3D1203;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .book-wrapper {
+      width: 100%;
+      max-width: 980px;
+      background: #fffdf8;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(61,18,3,0.16);
+      border: 1px solid rgba(61,18,3,0.06);
+      overflow: hidden;
+    }
+
+    .book-header {
+      background: #3D1203;
+      color: #E8C580;
+      padding: 18px 22px;
+      border-bottom: 3px solid #E48523;
+    }
+
+    .book-header .title { font-weight:800; font-size:20px; letter-spacing:0.4px; }
+    .book-header .subtitle { font-size:13px; opacity:0.9; margin-top:4px; }
+
+    .book-body {
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(232,197,128,0.06), #fffdf8);
+    }
+
+    label { display:block; font-weight:700; color:#3D1203; margin-bottom:6px; }
+    .input-plain {
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid rgba(61,18,3,0.12);
+      background:#fffefb;
+      color:#3D1203;
+      box-sizing:border-box;
+    }
+    .input-plain:focus { outline:none; box-shadow:0 4px 14px rgba(186,61,3,0.12); border-color:#BA3D03; }
+
+    .room-types-box {
+      background:#fff;
+      border-radius:10px;
+      padding:10px;
+      border:1px solid rgba(61,18,3,0.05);
+      max-height:220px;
+      overflow:auto;
+    }
+
+    .room-item {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px;
+      margin-bottom:10px;
+      border-radius:8px;
+      background:#fffaf5;
+      border:1px solid rgba(61,18,3,0.04);
+    }
+    .room-item .r-name { color:#BA3D03; font-weight:700; }
+    .room-item .r-amt { color:#E48523; font-weight:800; }
+
+    .summary-card {
+      background:#BA3D03;
+      color:#fff;
+      padding:18px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 28px rgba(61,18,3,0.14);
+    }
+    .summary-card .label { font-weight:700; font-size:13px; }
+    .summary-card .meta { color: rgba(255,255,255,0.9); font-size:13px; margin-top:6px; }
+    .summary-card .total { font-size:26px; font-weight:900; text-align:right; }
+
+    .btn-book {
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:none;
+      background:#3D1203;
+      color:#E8C580;
+      font-weight:800;
+      font-size:15px;
+      cursor:pointer;
+      margin-top:12px;
+    }
+    .btn-book:hover { background:#BA3D03; color:#fff; transform:translateY(-1px); }
+
+    @media (max-width: 767px) {
+      body { padding:16px; }
+      .book-header { padding:14px; }
+      .book-body { padding:16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="book-wrapper">
+    <div class="book-header d-flex justify-content-between align-items-start">
+      <div>
+        <div class="title">Book Reservation</div>
+        <div class="subtitle">Complete the form to confirm your reservation</div>
+      </div>
+      <div id="bookingDateLabel" class="small text-white-50"></div>
+    </div>
+
+    <div class="book-body">
+      <div class="container-fluid">
+        <div class="row gx-4">
+          <div class="col-md-7">
+            <div class="mb-3">
+              <label for="guestName">Guest Name</label>
+              <input id="guestName" class="input-plain" type="text" placeholder="Guest name (from account)">
+            </div>
+
+            <div class="mb-3">
+              <label>Room Type(s)</label>
+              <div id="roomTypes" class="room-types-box" aria-live="polite"></div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label>Check-in Date</label>
+                <input id="checkInDate" class="input-plain" type="date">
+              </div>
+              <div class="col-6">
+                <label>Check-in Time</label>
+                <input id="checkInTime" class="input-plain" type="time">
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label>Check-out Date</label>
+                <input id="checkOutDate" class="input-plain" type="date">
+              </div>
+              <div class="col-6">
+                <label>Check-out Time</label>
+                <input id="checkOutTime" class="input-plain" type="time">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="pax">Pax</label>
+              <input id="pax" class="input-plain" type="number" min="1" value="1">
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="summary-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="label">Total</div>
+                  <div id="roomCount" class="meta">0 types · 0 pax</div>
+                </div>
+                <div id="totalAmount" class="total">₱0.00</div>
+              </div>
+
+              <div class="mt-3">
+                <div class="small-muted" style="color:rgba(255,255,255,0.9)">Booking Date</div>
+                <div id="bookingDateSmall" class="meta"></div>
+              </div>
+
+              <button id="confirmBook" class="btn-book">Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="notify" style="position:fixed; bottom:18px; right:18px; z-index:3000; display:none;"></div>
+
+  <script>
+  async function fetchLoggedInName() {
+    try {
+      const res = await fetch('/api/me', { credentials: 'include' });
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      return data.name || data.fullname || data.username || '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function readBooking() {
+    try {
+      const raw = localStorage.getItem('dampa_booking');
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function formatCurrency(n) {
+    return '₱' + Number(n || 0).toLocaleString();
+  }
+
+  function showNotification(msg, ok = true) {
+    const el = document.createElement('div');
+    el.textContent = msg;
+    el.style.background = ok ? '#2d6a2d' : '#b02a2a';
+    el.style.color = '#fff';
+    el.style.padding = '10px 14px';
+    el.style.borderRadius = '8px';
+    el.style.boxShadow = '0 6px 20px rgba(0,0,0,0.12)';
+    const wrap = document.getElementById('notify');
+    wrap.appendChild(el);
+    wrap.style.display = 'block';
+    setTimeout(() => { el.remove(); if (!wrap.children.length) wrap.style.display = 'none'; }, 2600);
+  }
+
+  function escapeHtml(s) {
+    if (!s) return '';
+    return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+             .replaceAll('"','&quot;').replaceAll("'","&#039;");
+  }
+
+  function populateBookingUI(b) {
+    if (!b) return;
+    const d = b.bookingDate ? new Date(b.bookingDate) : new Date();
+    document.getElementById('bookingDateLabel').textContent = d.toLocaleString();
+    document.getElementById('bookingDateSmall').textContent = d.toLocaleString();
+
+    const box = document.getElementById('roomTypes');
+    box.innerHTML = '';
+    let totalPax = 0;
+
+    (b.rooms || []).forEach(r => {
+      const item = document.createElement('div');
+      item.className = 'room-item';
+      item.innerHTML = `
+        <div class="r-name">${escapeHtml(r.name)} x${r.qty}</div>
+        <div class="r-amt">${formatCurrency(r.amount)}</div>
+      `;
+      box.appendChild(item);
+      totalPax += Number(r.qty || 0);
+    });
+
+    document.getElementById('roomCount').textContent = `${(b.rooms || []).length} types · ${totalPax} pax`;
+    document.getElementById('totalAmount').textContent = formatCurrency(b.total || 0);
+  }
+
+  async function init() {
+    const booking = readBooking();
+    if (!booking) {
+      showNotification('No booking found. Returning to rooms.', false);
+      setTimeout(() => location.href = 'room.html', 1000);
+      return;
+    }
+
+    populateBookingUI(booking);
+
+    
+    const apiName = await fetchLoggedInName();
+    const guestInput = document.getElementById('guestName');
+    guestInput.value = booking.guestName || apiName || '';
+    guestInput.placeholder = apiName ? `Logged in as ${apiName}` : 'Guest name (from account)';
+
+    if (booking.pax) document.getElementById('pax').value = booking.pax;
+
+    document.getElementById('confirmBook').addEventListener('click', () => {
+      const guest = guestInput.value.trim();
+      const checkInDate = document.getElementById('checkInDate').value;
+      const checkInTime = document.getElementById('checkInTime').value;
+      const checkOutDate = document.getElementById('checkOutDate').value;
+      const checkOutTime = document.getElementById('checkOutTime').value;
+      const pax = Number(document.getElementById('pax').value || 1);
+
+      if (!guest) { showNotification('Please provide guest name.', false); return; }
+      if (!checkInDate || !checkInTime || !checkOutDate || !checkOutTime) { showNotification('Select check-in & check-out date/time.', false); return; }
+      if (pax <= 0) { showNotification('Enter valid pax.', false); return; }
+
+      const payload = {
+        guestName: guest,
+        checkIn: `${checkInDate}T${checkInTime}`,
+        checkOut: `${checkOutDate}T${checkOutTime}`,
+        pax,
+        rooms: booking.rooms,
+        total: booking.total,
+        bookingDate: booking.bookingDate || new Date().toISOString()
+      };
+
+      try {
+        localStorage.setItem('dampa_booking', JSON.stringify(payload));
+        location.href = 'customer-payment.html';
+      } catch (e) {
+        showNotification('Unable to proceed to payment.', false);
+      }
+    });
+  }
+
+  init();
+</script>
+
+</body>
+</html>
