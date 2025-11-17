@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="DAMPA sa Tabing Dagat - Affordable beachfront transient houses in Nasugbu, Batangas">
+    <title>DAMPA sa Tabing Dagat</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+   
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #FFF6EC;
+      color: #3D1203;
+      padding-top: 72px;
+      scroll-behavior: smooth;
+    }
+    
+    
+    .topnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #3D1203;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: none;
+      border: none;
+    }
+    .topnav .logo img {
+    background: none; 
+    display: block;
+    max-height: 60px; 
+    object-fit: contain;
+}
+
+
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #FFF;
+      font-weight: 600;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #E48523;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 2px solid #C5A07E;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: #fff;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: #3D1203;
+      background: transparent;
+    }
+
+    .search-box i {
+      color: #7f492b;
+    }
+
+
+    .icon {
+      display: none;
+      font-size: 22px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+
+    @media screen and (max-width: 768px) {
+      .menu-icon,
+      .search-icon {
+        display: block;
+        flex: 1;
+      }
+
+      .menu-icon {
+        text-align: left;
+      }
+      body {
+        padding-top: 0 !important;
+      }
+
+      .search-icon {
+        text-align: right;
+      }
+
+      .logo {
+        flex: 1;
+        text-align: center;
+      }
+
+      .logo img {
+        height: 35px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #3D1203;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 15px 0;
+        border-top: 1px solid #C5A07E;
+        text-align: center;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        color: #fff;
+        font-size: 16px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .right-actions {
+        display: none;
+      }
+    }
+
+    .hero { 
+  min-height: calc(100vh - 72px); 
+  background: url('images/beach-view.jpg') center/cover no-repeat; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  color: #fff; 
+  text-align: center; 
+  position: relative;
+  padding: 32px 18px; 
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(61, 18, 3, 0.25); 
+  pointer-events: none; 
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; 
+}
+
+.hero-content h1 {
+  font-family: 'Playfair Display', serif; 
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff; 
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+  margin-bottom: 12px;
+}
+
+.hero-content p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
+  color: #fdfdfd;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+    .book-now {
+      background: #7A1C1C;
+      color: #fff;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .book-now:hover {
+      background: #5E1414;
+      transform: scale(1.05);
+    }
+
+    
+    
+    section {
+      padding: 4rem 1.5rem;
+    }
+
+    h3 {
+      color: #BA3D03;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #3D1203;
+    }
+  
+    #about {
+      background-color: #FFF;
+      padding: 60px 0;
+    }
+
+    #about .container {
+      max-width: 1100px;
+      margin: auto;
+      background: #FAEED1;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      padding: 45px;
+      
+    }
+
+    .about-card {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-between;
+      background-color: #FFF8F0;
+      color: #3D1203;
+      border-radius: 14px;
+      padding: 25px 30px;
+      margin-top: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      gap: 25px;
+      position: relative;
+    }
+
+    .about-card .about-text {
+      flex: 1 1 55%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 28px 10px 36px;
+      position: relative;
+    }
+
+    .about-card .about-text h4 {
+      color: #BA3D03;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .about-card .about-text p,
+    .about-card .about-text ul {
+      color: #3D1203;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .about-card .about-text ul {
+      margin-left: 22px;
+      list-style-type: disc;
+    }
+
+    .about-card .about-text::before {
+      content: "";
+      width: 6px;
+      height: 86%;
+      background: linear-gradient(180deg, #E48523, #BA3D03);
+      border-radius: 4px;
+      position: absolute;
+      left: 10px;
+      top: 7%;
+      opacity: 0.95;
+    }
+
+    .about-card .about-image {
+      flex: 1 1 40%;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      min-height: 280px;
+    }
+
+    .about-card .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 18px rgba(61, 18, 3, 0.08);
+    }
+
+    #about h3 {
+      color: #BA3D03;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    #about p.section-desc {
+      color: #3D1203;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    @media (max-width: 992px) {
+      .about-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+      .about-card .about-text {
+        padding: 8px 12px;
+      }
+      .about-card .about-text::before {
+        display: none;
+      }
+      .about-card .about-image {
+        min-height: 220px;
+        margin-top: 18px;
+      }
+      #about .container {
+        padding: 28px;
+      }
+    }
+
+    .container { max-width:1400px; margin:0 auto; padding:0 16px; }
+    .gallery-grid {
+      display: grid;
+      gap: 18px;
+      
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      align-items: stretch; 
+    }
+
+    @media (max-width:1300px) {
+      .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width:1100px) {
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width:760px) {
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width:420px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+
+    
+    .room-card, .featured-card {
+      background: #FAEED1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(61, 18, 3, 0.1);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      
+    }
+
+    .room-card:hover, .featured-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(186, 61, 3, 0.25);
+    }
+
+    .room-card img, .featured-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .room-card .body, .featured-card .content {
+      padding: 16px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #FAEED1;
+    }
+
+    .room-card h3, .featured-card h3 {
+      color: #3D1203;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .room-card p, .featured-card p {
+      color: #5C4033;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .price-badge {
+      background: #E48523;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      align-self: flex-start;
+    }
+
+    .book-btn {
+      background: #BA3D03;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .book-btn:hover {
+      background: #3D1203;
+    }
+
+    #rooms {
+      background: #FFF;
+      padding: 80px 0;
+    }
+
+    
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 5px;
+      align-items: stretch;
+      justify-items: center;
+      text-align: center;
+    }
+    #amenities {
+      background: #fff;
+    }
+
+    
+    .why-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .why-item:hover {
+      transform: translateY(-5px);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    
+    .why-item i {
+      font-size: 60px;
+      color: #E48523;
+      width: 100px;
+      height: 100px;
+      line-height: 120px;
+      border-radius: 12px;
+       background: #FFF;
+      box-shadow: inset 0 0 8px rgba(228,133,35,0.2);
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    
+    .why-item h4 {
+      font-weight: bold;
+      color: #BA3D03;
+      margin-bottom: 8px;
+    }
+
+    .why-item p {
+      color: #3D1203;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    
+    @media (max-width: 992px) {
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+   
+    #fees {
+       background: #FFF;
+      padding: 48px 0;
+    }
+
+    #fees .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+   
+    #fees > .container > div:first-child h3 {
+      color: #3D1203;     
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.4px;
+      font-weight: 700;
+      text-transform: none;
+    }
+    #fees > .container > div:first-child p {
+      color: #BA3D03;      
+      opacity: 0.95;
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+
+    
+    .card-soft {
+      background: #FFF8F0;           
+      border-radius: 14px;
+      padding: 22px 26px;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: 0 8px 22px rgba(61,18,3,0.06);
+      border: 2px solid rgba(186,61,3,0.06); 
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      line-height: 1.6;
+    }
+
+    
+    .card-soft ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .card-soft li {
+      color: #3D1203;               
+      font-size: 0.98rem;
+      line-height: 1.6;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(232,133,35,0.03), rgba(197,160,126,0.02));
+    }
+
+  
+    .card-soft li strong {
+      color: #BA3D03;               
+      font-weight: 700;
+    }
+
+   
+    .card-soft .fee-amount {
+      display: inline-block;
+      background: #E48523;           
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-left: 8px;
+      font-size: 0.95rem;
+    }
+
+    
+    @media (max-width: 860px) {
+      #fees { padding: 36px 0; }
+      .card-soft { padding: 18px; }
+      #fees > .container > div:first-child h3 { font-size: 1.5rem; }
+    }
+
+    #reviews {
+      background: #FFF;
+      padding: 60px 0;
+    }
+
+    #reviews .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    #reviews h3 {
+      color: #3D1203;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    #reviews p {
+      color: #BA3D03;
+      font-size: 1.05rem;
+      opacity: 0.95;
+    }
+
+    #reviews .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    #reviews .room-card {
+      background-color: #FFF8F0;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(61,18,3,0.08);
+      padding: 20px 22px;
+      border: 2px solid rgba(228,133,35,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 340px;
+    }
+
+    #reviews .room-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 22px rgba(61,18,3,0.12);
+      border-color: #E48523;
+    }
+
+    #reviews .room-card strong {
+      display: block;
+      color: #3D1203;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    #reviews .stars {
+      color: #E48523;
+      font-size: 1.1rem;
+      margin: 6px 0 10px;
+    }
+
+    #reviews .room-card p {
+      color: #3D1203;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      #reviews {
+        padding: 45px 0;
+      }
+      #reviews .room-card {
+        max-width: 100%;
+      }
+    }
+
+
+    .modal { 
+      display:none; 
+      position:fixed; 
+      z-index:9999; 
+      left:0; 
+      top:0; 
+      width:100%; 
+      height:100%; 
+      background:rgba(0,0,0,0.6); 
+      justify-content:center; 
+      align-items:center; 
+    }
+
+    .modal .modal-content { 
+      background:transparent; 
+      border-radius:10px; 
+      max-width:450px; 
+      width:100%; 
+      padding:20px; 
+      position:relative; 
+    }
+
+    .close { position:absolute; 
+      top:10px; 
+      right:15px; 
+      font-size:28px; 
+      font-weight:bold; 
+      color:#3D1203; 
+      cursor:pointer; 
+    }
+
+    .login { 
+      background:#E8C580; 
+      padding:30px 25px; 
+      border-radius:12px; 
+      border:2px solid #C5A07E; 
+      text-align:left; 
+      box-shadow:0 4px 15px rgba(0,0,0,0.15); 
+    }
+
+    .form-group { 
+      margin-bottom:15px; 
+      display:flex; 
+      flex-direction:column; 
+    }
+
+    input[type=text], input[type=password] { 
+      padding:10px 12px; 
+      border:2px solid #C5A07E; 
+      border-radius:6px; 
+      width:100%; 
+      font-size:14px; 
+    }
+
+    input:focus { 
+      outline:none; 
+      border-color:#E48523; 
+      box-shadow:0 0 6px rgba(228,133,35,0.4); 
+    }
+
+    .password-container { 
+      position:relative; 
+    }
+
+    .password-container input { 
+      padding-right:40px; 
+    }
+
+    .password-container i { 
+      position:absolute; 
+      right:10px; 
+      top:50%; 
+      transform:translateY(-50%); 
+      cursor:pointer; 
+      font-size:18px; 
+      color:#7f492b; 
+    }
+
+    
+    .login button[type="submit"], button.book-now {
+      display:inline-block;
+      text-decoration:none;
+      border:0;
+      cursor:pointer;
+    }
+
+    
+    @media(max-width:576px){
+      .hero-content h1{font-size:2rem;}
+      .hero{min-height:calc(70vh - 72px);}
+    }
+
+      #contact {
+      background: #FFF;
+      padding: 70px 20px;
+    }
+
+    #contact .container {
+      max-width: 1100px;
+      margin: auto;
+      background-color: #FAEED1;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      padding: 50px;
+      
+    }
+
+    #contact h3 {
+      color: #BA3D03;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    #contact p {
+      color: #3D1203;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+
+    #contact .login {
+      background-color: #FFF8F0;
+      border-radius: 14px;
+      padding: 30px;
+      
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    #contact a {
+      color: #BA3D03;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    #contact a:hover {
+      color: #E48523;
+    }
+
+    #contact .book-now {
+      background: linear-gradient(180deg, #E48523, #BA3D03);
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    #contact .book-now:hover {
+      background: linear-gradient(180deg, #BA3D03, #E48523);
+      transform: scale(1.05);
+    }
+
+    #contact .map-container {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      height: 450px;
+      
+    }
+
+    #contact .map-crop {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    #contact iframe {
+      width: 100%;
+      height: 525px;
+      border: 0;
+      transform: translateY(-60px);
+      filter: saturate(1.2) brightness(1.05);
+    }
+
+    @media (max-width: 768px) {
+      #contact .container {
+        padding: 25px;
+      }
+      #contact h3 {
+        font-size: 26px;
+      }
+      #contact .login {
+        padding: 20px;
+      }
+    }
+
+
+        footer {
+      background: #32140b;
+      color: #f2e6da;
+      padding: 20px 20px 28px;
+      border-top: 0;
+      font-size: 15px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto 18px;
+      display: grid;
+      grid-template-columns: 260px 1fr 1fr 180px;
+      gap: 28px 40px;
+      align-items: start;
+    }
+
+    .footer-grid > div:first-child img {
+      display: block;
+      width: 72px;
+      height: auto;
+      margin-bottom: 12px;
+      filter: brightness(1.05);
+    }
+
+    .footer-grid > div:first-child p {
+      color: #f3e7d4;
+      line-height: 1.6;
+      max-width: 220px;
+    }
+
+    .footer-grid h5 {
+      color: #d7a05a;
+      margin-bottom: 12px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+
+    .footer-grid ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-grid li {
+      margin-bottom: 10px;
+    }
+
+    .footer-grid a {
+      color: #f6eede;
+      text-decoration: none;
+      opacity: 0.95;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .footer-grid a:hover {
+      opacity: 1;
+      transform: translateX(4px);
+      color: #fff;
+    }
+
+
+    .footer-grid .socials a {
+      display: inline-block;
+      margin-right: 10px;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .footer-grid .socials a:hover {
+      background: #d7a05a;
+      color: #2b140b;
+      transform: translateY(-3px);
+    }
+
+
+    .footer-bottom {
+      color: #e7d9c6;
+      text-align: center;
+      padding-top: 40px;
+      font-size: 13px;
+      max-width: 1200px;
+      margin: 14px auto 0 auto;
+    }
+
+    @media (max-width: 992px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+        text-align: center;
+      }
+
+      .footer-grid > div:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .footer-grid > div:first-child img {
+        margin: 0 auto 10px;
+      }
+
+      .footer-grid > div:first-child p {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .footer-grid > div:first-child p {
+        max-width: 100%;
+      }
+
+      .footer-grid .socials a {
+        margin-right: 6px;
+      }
+
+      footer {
+        font-size: 14px;
+        padding: 20px 14px 30px;
+      }
+    }
+
+    
+    .search-box-desktop,
+    .search-box-mobile {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box-desktop input,
+    .search-box-mobile input {
+      padding: 6px 30px 6px 10px;
+      border: 1px solid #d7a05a;
+      border-radius: 4px;
+      outline: none;
+      width: 180px;
+    }
+
+    .search-box-desktop i,
+    .search-box-mobile i {
+      position: absolute;
+      right: 8px;
+      color: #d7a05a;
+      cursor: pointer;
+    }
+
+
+    .search-box-mobile {
+      display: none;
+      width: 30%;
+      background: #32140b;
+      padding: 8px;
+      border-top: 1px solid #d7a05a;
+    }
+
+    .search-box-mobile.show {
+      display: flex;
+    }
+
+
+    @media (min-width: 768px) {
+      .search-box-desktop {
+        display: flex;
+      }
+
+      .search-box-mobile {
+        display: none !important;
+      }
+    }
+
+      .footer-bottom {
+      color: #e7d9c6;
+      text-align: center;
+      padding: 15px 0 ;
+      font-size: 13px;
+      
+      clear: both;              
+      position: relative;      
+      z-index: 1;
+    }
+
+      @media (max-width:992px) {
+        .footer-grid { grid-template-columns:1fr 1fr; 
+          gap:18px; 
+        }
+        .footer-grid > div:first-child p { 
+          max-width:none; }
+        }
+
+        @media (max-width:600px) {
+          .footer-grid { grid-template-columns:1fr; text-align:center; }
+          .footer-grid .socials { justify-content:center; display:flex; gap:10px; margin-top:8px; }
+          .footer-grid h5 { text-align:center; }
+        }
+
+    .role-modal {
+      background: #E8C580;
+      border: none;
+      color: #3D1203;
+      border-radius: 15px !important;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+      overflow: hidden; 
+    }
+
+    .role-modal .modal-header {
+      background: #BA3D03;
+      color: #fff;
+      border: none;
+      border-top-left-radius: 15px !important;
+      border-top-right-radius: 15px !important;
+    }
+
+    .role-modal .modal-body {
+      background-color: #E8C580;
+      padding: 30px;
+      border-bottom-left-radius: 15px !important; 
+      border-bottom-right-radius: 15px !important;
+    }
+
+    .role-modal .btn-close {
+      filter: invert(1);
+    }
+
+
+    .role-cards-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+
+    .role-card {
+      background: #C5A07E;
+      color: #3D1203;
+      padding: 20px;
+      border-radius: 12px;
+      flex: 0 0 100px;
+      height: 130px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 2px solid #BA3D03;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .role-card:hover {
+      background: #E48523;
+      color: #fff;
+      transform: scale(1.05);
+      border-color: #3D1203;
+      box-shadow: 0 4px 10px rgba(61, 18, 3, 0.3);
+    }
+
+    .role-card h6 {
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+  </style>
+</head>
+<body>
+
+  
+  <header class="topnav" role="banner">
+  
+  <div class="menu-icon icon" onclick="toggleMenu()" aria-label="Toggle navigation">
+    <i class="fa fa-bars"></i>
+  </div>
+
+  
+  <div class="logo">
+    <a href="#home">
+      <img src="images/Dampa Logo.png" alt="DAMPA sa Tabing Dagat logo">
+    </a>
+  </div>
+
+  
+  <div class="search-icon icon d-md-none" onclick="toggleSearch()" aria-label="Search">
+    <i class="fa fa-search"></i>
+  </div>
+
+  
+  <div class="search-box-mobile" id="mobileSearchBox">
+    <input type="text" placeholder="Search...">
+  </div>
+
+ 
+  <nav class="nav-links" id="navLinks">
+    <a href="#home"><i class="fa fa-home"></i> Home</a>
+      <a href="#rooms"><i class="fa fa-bed"></i> Rooms</a>
+
+    <a href="#about"><i class="fa fa-info-circle"></i> About</a>
+    <a href="#contact"><i class="fa fa-phone"></i> Contact</a>
+    <a href="login.php"><i class="fa fa-sign-in-alt"></i> Log In</a>
+  </nav>
+
+  <div class="right-actions d-none d-md-flex">
+    <div class="search-box-desktop">
+      <input type="text" placeholder="Search...">
+      <i class="fa fa-search"></i>
+    </div>
+  </div>
+</header>
+
+  <section id="home" class="hero" aria-label="Hero">
+    <div class="hero-content" data-aos="fade-up">
+      <h1>DAMPA sa Tabing Dagat</h1>
+      <p>Very Affordable Staycation — Newly Renovated Transient Houses. Beachfront • Family & Barkada friendly</p>
+      <div style="margin-top:18px;">
+        <button class="book-now" onclick="openLogin()">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" data-aos="fade-up">
+  <div class="container">
+    <h3>About DAMPA sa Tabing Dagat</h3>
+    <p class="section-desc">
+      Reserve now to experience an outing and stay at our newly renovated transient houses — perfect for swimming, relaxation, and budget-friendly staycations.
+    </p>
+
+    <div class="about-card" data-aos="fade-up">
+      <div class="about-text">
+        <h4>Resort Overview</h4>
+        <p>
+          Summer is waving!! Reserve na po kayo para ma-experience ninyo po ang stay at outing dito sa aming
+          <strong>DAMPA sa Tabing Dagat (Newly Renovated - Transient House)</strong>.
+        </p>
+        <ul>
+          <li><strong>5 Transient Houses</strong> — 2 Regular Rooms and 1 Small Room with airconditioned (each can accommodate 15 pax). Rate: ₱7,000</li>
+          <li><strong>Room 4</strong> — Couple room (2–7 pax). Rate: ₱2,500</li>
+          <li><strong>Room 5 (Big Room)</strong> — 20 pax capacity. Rate: ₱7,000</li>
+          <li>Each room includes attached open cottage, long table & chairs, CR, sink & faucet, free use of gas stove & stainless grill.</li>
+          <li>Generator available, sari-sari store on site, tent pitching (rental), bonfire (wood sold on site).</li>
+        </ul>
+      </div>
+
+      <div class="about-image">
+        <img src="images/welcome-to-dampa.jpg" alt="DAMPA sa Tabing Dagat Resort Front View">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <section id="rooms" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Room Gallery & Rates</h3>
+        <p style="color:#3D1203;">Click "Book Now" to reserve — you will be prompted to log in or sign up first.</p>
+      </div>
+
+      <div class="gallery-grid" role="list">
+        <article id="room1" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room-1.jpg" alt="Room 1">
+          <div class="body">
+            <h4>Room 1</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 15 pax. Attached open cottage, long table & chairs, CR, sink, 2 wall fans, free use of gas stove & stainless grill.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <article id="room2" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room-1 (3).jpg" alt="Room 2">
+          <div class="body">
+            <h4>Room 2</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 15 pax. Great for groups and family outings.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <article id="room3" class="room-card" data-aos="fade-up">
+          <img src="images/small-room(1).jpg" alt="Room 3">
+          <div class="body">
+            <h4>Small Room</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 15 pax. Air-conditioned comfort and seaside view.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <article id="room4" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room3-room.jpg" alt="Room 4 - Couple (2-7 pax)">
+          <div class="body">
+            <h4>Couple Room</h4>
+            <p style="color:#3D1203;">Sleeping capacity: 2–7 pax (cozy for couples or small groups).</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱2,500</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <article id="room5" class="room-card" data-aos="fade-up">
+          <img src="images/ac-room1-cottage.jpg" alt="Room 5 - Big Room (20 pax)">
+          <div class="body">
+            <h4>Big Room</h4>
+            <p style="color:#3D1203;">Sleeping capacity: up to 20 pax. Ideal for large groups and reunions.</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+              <span class="price-badge">₱7,000</span>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="amenities" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Amenities & Facilities</h3>
+        <p style="color:#3D1203;">Everything you need for a comfortable and fun stay — included and available on-site.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-item" data-color="#FFA500"  data-aos="fade-up">
+          <i class="fas fa-umbrella-beach"></i>
+          <h4>Beachfront</h4>
+          <p style="color:#3D1203;">Soft sand, clean seawater, and two small kubo in front.</p>
+        </div>
+        <div class="why-item" data-color="#00BFFF"  data-aos="fade-up">
+          <i class="fas fa-house"></i>
+          <h4>Open Cottage</h4>
+          <p style="color:#3D1203;">Attached to rooms with long table & chairs.</p>
+        </div>
+        <div class="why-item" data-color="#32CD32"  data-aos="fade-up">
+          <i class="fas fa-toilet"></i>
+          <h4>Private CR</h4>
+          <p style="color:#3D1203;">Tiled CR for each room with sink & faucet.</p>
+        </div>
+        <div class="why-item" data-color="#FF6347"  data-aos="fade-up">
+          <i class="fas fa-utensils"></i>
+          <h4>Kitchen & Grill</h4>
+          <p style="color:#3D1203;">Free use of single-burner gas stove & stainless steel grill.</p>
+        </div>
+        <div class="why-item" data-color="#FF4500"  data-aos="fade-up">
+          <i class="fas fa-fire"></i>
+          <h4>Bonfire</h4>
+          <p style="color:#3D1203;">Bonfire nights — wood available on site.</p>
+        </div>
+        <div class="why-item" data-color="#9370D8"  data-aos="fade-up">
+          <i class="fas fa-bolt"></i>
+          <h4>Generator Backup</h4>
+          <p style="color:#3D1203;">Generator available during brownouts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fees" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Exclusions & Additional Fees</h3>
+        <p style="color:#3D1203;">Fees paid separately by guests on arrival (not included in room rates).</p>
+      </div>
+
+      <div class="card-soft" style="margin:0 auto; max-width:900px;" data-aos="fade-up">
+        <ul style="color:#3D1203;">
+          <li><strong>Parking Fees (overnight):</strong> ₱80 (motor), ₱150 (car/van), ₱200 (jeep). Security attendant on duty.</li>
+          <li><strong>Ecological Fee (barangay):</strong> ₱20 per head (adults 8 yrs & above). Children 7 yrs & below exempt. Official receipt issued.</li>
+          <li><strong>Excess Guests:</strong> Additional ₱200 per excess person beyond agreed count (adults & kids).</li>
+          <li><strong>Down Payment / Reservation Fee:</strong> ₱1,000 (non-refundable) to reserve the slot. First to pay DP secures the date.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <?php
+$conn = new mysqli("localhost", "root", "", "dampa_booking");
+if ($conn->connect_error) die("Connection failed: ".$conn->connect_error);
+
+$sql = "
+    SELECT 
+        r.rating,
+        r.review_text,
+        c.first_name,
+        c.middle_name,
+        c.last_name
+    FROM ratings r
+    JOIN customer c ON r.customer_id = c.customer_id
+    ORDER BY r.rating_id DESC
+";
+
+$result = $conn->query($sql);
+?>
+
+<section id="reviews" data-aos="fade-up">
+  <div class="container">
+    <h3>Customer Reviews</h3>
+
+    <div class="row" style="display:flex; flex-wrap:wrap; gap:18px;">
+      <?php while($row = $result->fetch_assoc()): ?>
+
+      <?php
+        // Build full name
+        $fullname = $row['first_name'];
+        if (!empty($row['middle_name'])) $fullname .= " " . $row['middle_name'];
+        $fullname .= " " . $row['last_name'];
+      ?>
+
+      <div style="flex:1 1 300px;" data-aos="fade-up">
+        <div class="room-card" style="padding:16px;">
+          
+          <strong><?= htmlspecialchars($fullname) ?></strong>
+
+          <div class="stars" style="color:#E48523; margin:6px 0;">
+            <?= str_repeat('★', $row['rating']) . str_repeat('☆', 5-$row['rating']) ?>
+          </div>
+
+          <p style="color:#3D1203;"><?= htmlspecialchars($row['review_text']) ?></p>
+        </div>
+      </div>
+
+      <?php endwhile; ?>
+    </div>
+  </div>
+</section>
+
+
+  <section id="contact" data-aos="fade-up">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:18px;">
+        <h3>Contact & Location</h3>
+        <p style="color:#3D1203;">PM for reservations & inquiries — or contact us using the details below.</p>
+      </div>
+
+      <div class="row" style="display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:20px; align-items:start;">
+        <div data-aos="fade-up">
+          <div class="login" style="border:none; background:#fff; color:#3D1203;">
+            <h4 style="margin-top:0;">Reach Us</h4>
+            <p><strong>FB Account:</strong> <a href="https://www.facebook.com/EmmaruthPaloParis" target="_blank" rel="noopener">Emmaruth Palo Paris</a></p>
+            <p><strong>FB Page:</strong> <a href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener">DAMPA sa Tabing Dagat</a></p>
+            <p><strong>Contact Number:</strong> <a href="tel:+639459862423">0945 986 2423</a></p>
+            <p><strong>Location:</strong> Tanigue St., Brgy. Bucana, Nasugbu, Batangas (Near BSU Nasugbu)</p>
+            <p style="color:#3D1203;">PM on FB for reservations & other inquiries. Down payment of ₱1,000 required to reserve (non-refundable).</p>
+            <div style="display:flex; gap:8px;">
+              <a class="book-now" href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener" style="text-decoration:none; padding:10px 18px; border-radius:6px;">Message on FB</a>
+              <button class="book-now" onclick="openLogin()">Book Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up">
+         <div class="map-container">
+        <div class="map-crop">
+          <iframe
+            src="https://www.google.com/maps?q=Tanigue%20St.%20Brgy.%20Bucana%20Nasugbu%20Batangas&output=embed"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div> 
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer aria-label="Site Footer">
+    <div class="footer-grid">
+      <div>
+        <img src="images/Dampa Logo.png" alt="logo" style="max-width:140px;">
+        <p>DAMPA sa Tabing Dagat — Affordable staycation by the sea. Experience comfort, relaxation, and fun with your loved ones.</p>
+      </div>
+
+      <div>
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#rooms">Rooms</a></li>
+          <li><a href="#amenities">Amenities</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5>Contact Info</h5>
+        <ul>
+          <li>Tanigue St., Brgy. Bucana, Nasugbu, Batangas</li>
+          <li>📞 <a href="tel:+639459862423">0945 986 2423</a></li>
+          <li>FB: <a href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener">DAMPA sa Tabing Dagat</a></li>
+        </ul>
+      </div>
+
+      <div style="display:flex; flex-direction:column; align-items:flex-end;">
+        <h5>Follow Us</h5>
+        <div class="socials" aria-label="Social links">
+          <a href="https://www.facebook.com/DAMPAsaTabingDagat" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      © 2025 DAMPA sa Tabing Dagat. All Rights Reserved.
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+  AOS.init({
+    duration: 700,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 80
+  });
+
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header.topnav');
+    if (header) {
+      header.style.boxShadow = window.scrollY > 8
+        ? '0 10px 30px rgba(61,18,3,0.18)'
+        : '0 2px 5px rgba(0,0,0,0.1)';
+    }
+  });
+
+  const menuIcon = document.querySelector('.icon');
+  const navLinks = document.querySelector('.nav-links');
+  const rightActions = document.querySelector('.right-actions');
+
+  if (menuIcon) {
+    menuIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+      rightActions.classList.toggle('show');
+    });
+  }
+
+  function toggleSearch() {
+    const mobileSearch = document.getElementById('mobileSearchBox');
+    if (mobileSearch) mobileSearch.classList.toggle('show');
+  }
+
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (navLinks && navLinks.classList.contains('show')) {
+      navLinks.classList.remove('show');
+    }
+  }
+
+  function openLogin() {
+    window.location.href = "login.php";
+  }
+
+  let actionType = '';
+
+  function openRoleModal(type) {
+    actionType = type;
+    const roleModal = new bootstrap.Modal(document.getElementById('roleModal'));
+    roleModal.show();
+  }
+
+  document.querySelectorAll('.why-item').forEach(item => {
+    const color = item.getAttribute('data-color');
+    const icon = item.querySelector('i');
+    const title = item.querySelector('h4');
+    const desc = item.querySelector('p');
+
+   item.addEventListener('mouseenter', () => {
+    item.style.backgroundColor = color;
+    icon.style.color = '#fff';
+    icon.style.backgroundColor = 'rgba(255,255,255,0.2)';
+    icon.style.boxShadow = 'none';
+    title.style.color = '#fff';
+    desc.style.color = '#fff';
+});
+
+item.addEventListener('mouseleave', () => {
+    item.style.backgroundColor = '';
+    icon.style.color = '';
+    icon.style.backgroundColor = '';
+    icon.style.boxShadow = '';
+    title.style.color = '';
+    desc.style.color = '';
+});
+
+});
+
+
+</script>
+
+
+</body>
+</html>
